@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head><title layout:fragment="title">Articles</title></head>
+<body>
+    <main layout:fragment="content">
+        <section class="py-12">
+            <div>
+                <h3  th:text="${post.title}" class="text-xl font-semibold mb-2">Titre de l'article</h3>
+                <p  th:text="${post.content}" class="text-gray-600 mb-4">Petit résumé rapide de l’article pour donner envie de lire la suite.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -11,8 +11,8 @@
         <div class="flex justify-between items-center h-16">
             <a href="#" class="text-2xl font-bold text-indigo-600">MonBlog</a>
             <nav class="space-x-6 hidden md:flex items-center text-sm">
-                <a href="#" class="text-gray-600 hover:text-indigo-600 transition">Accueil</a>
-                <a href="#" class="text-gray-600 hover:text-indigo-600 transition">Articles</a>
+                <a href="/" class="text-gray-600 hover:text-indigo-600 transition">Accueil</a>
+                <a href="/posts/all" class="text-gray-600 hover:text-indigo-600 transition">Articles</a>
 
                 <div sec:authorize="isAuthenticated()" class="flex items-center space-x-3">
                     <span class="text-gray-700">Connecté en tant que <strong sec:authentication="name"></strong></span>
