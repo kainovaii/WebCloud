@@ -11,21 +11,25 @@ public class User
     private Long id;
 
     @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(nullable = false)
+    private String role;
 
     public User() {}
 
-    public User(String email, String password, String username)
+    public User(String username, String email, String password, String role)
     {
         this.email = email;
         this.password = password;
         this.username = username;
+        this.role = role;
     }
 
     public Long getId() {
@@ -59,4 +63,8 @@ public class User
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
 }

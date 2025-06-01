@@ -1,4 +1,4 @@
-package fr.kainovaii.blogspring.controller;
+package fr.kainovaii.blogspring.controller.front;
 
 import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.service.PostService;
@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/posts")
@@ -25,14 +23,6 @@ public class PostController
     public List<Post> getAllPosts()
     {
         return postService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id)
-    {
-        return postService.findById(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/create")
@@ -51,7 +41,7 @@ public class PostController
         return "posts/list";
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public String showPost(Model model, @PathVariable Long id) {
         return postService.findById(id)
         .map(post -> {
@@ -66,5 +56,13 @@ public class PostController
     {
         postService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/api/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id)
+    {
+        return postService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

@@ -1,7 +1,6 @@
-package fr.kainovaii.blogspring.controller;
+package fr.kainovaii.blogspring.controller.front;
 
 import fr.kainovaii.blogspring.model.User;
-import fr.kainovaii.blogspring.repository.UserRepository;
 import fr.kainovaii.blogspring.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
