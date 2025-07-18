@@ -14,7 +14,7 @@
             <ul class="menu menu-horizontal p-px">
                 <li><a class="text-red-500" th:href="@{/admin}">Administration</a></li>
                 <li th:if="${webAccess.isRouteMatch('/posts')}"><a th:href="@{/admin/posts/new}">New post</a></li>
-                <li th:if="${webAccess.isRouteMatch('/posts/:id')}"><a th:href="@{/admin/posts/{id}/edit(id=${post.id})}">Edit post</a></li>
+                <li th:if="${webAccess.isRouteMatch('/posts/:id')}"><a th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit post</a></li>
             </ul>
         </div>
     </div>

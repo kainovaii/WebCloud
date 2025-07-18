@@ -23,7 +23,7 @@
                         <tr th:each="post : ${posts}">
                             <td th:text="${post.id}">default-content</td>
                             <td th:text="${post.title}">default-content</td>
-                            <td>NaN</td>
+                            <td><a class="btn btn-sm btn-secondary" th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit</a></td>
                         </tr>
                         </tbody>
                     </table>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
+<body>
+    <div layout:fragment="content">
+        <div class="card shadow mb-4">
+            <h3 th:text="${post.title}" class="text-xl font-semibold mb-2"></h3>
+            <p th:text="${post.content}" class="text-gray-600 mb-4"></p>
+        </div>
+    </div>
+</body>
+</html>
