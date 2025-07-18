@@ -2,31 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
 <body>
     <div layout:fragment="content">
-        <h1 class="h3 mb-2 text-gray-800">Blog Posts</h1>
-        <div class="card shadow mb-4">
-            <!--
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">NaN</h6>
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="h3 mb-2 text-gray-800">Blog Posts</h1>
             </div>
-            -->
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable">
-                        <thead>
-                        <tr>
-                            <th><strong>#</strong></th>
-                            <th>Title</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="post : ${posts}">
-                            <td th:text="${post.id}">default-content</td>
-                            <td th:text="${post.title}">default-content</td>
-                            <td><a class="btn btn-sm btn-secondary" th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-6">
+                <a class="btn btn-primary float-right" th:href="@{/admin/posts/new}">New post</a>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th><strong>#</strong></th>
+                                    <th>Title</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="post : ${posts}">
+                                    <td th:text="${post.id}">default-content</td>
+                                    <td th:text="${post.title}">default-content</td>
+                                    <td><a class="btn btn-sm btn-secondary" th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 

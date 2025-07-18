@@ -1,5 +1,7 @@
 package fr.kainovaii.blogspring.controller.admin;
 
+import fr.kainovaii.blogspring.Component.SnowflakeIdGenerator;
+import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,19 +15,24 @@ import org.springframework.web.servlet.view.RedirectView;
 public class PostController
 {
     private final PostService postService;
+    private final SnowflakeIdGenerator idGenerator;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService, SnowflakeIdGenerator idGenerator)
+    {
         this.postService = postService;
+        this.idGenerator = idGenerator;
     }
 
     @GetMapping("")
-    public String home(Model model) {
+    public String home(Model model)
+    {
         model.addAttribute("posts", postService.findAll());
         return "admin/posts/list";
     }
 
     @GetMapping("/edit/{id}")
-    public String view(Model model, @PathVariable Long id) {
+    public String edit(Model model, @PathVariable Long id)
+    {
         return postService.findById(id)
         .map(post -> {
             model.addAttribute("post", post);
@@ -35,7 +42,8 @@ public class PostController
     }
 
     @PostMapping("/edit")
-    public RedirectView edit(@RequestParam long id, @RequestParam String title, @RequestParam String content, RedirectAttributes redirectAttributes) {
+    public RedirectView edit(@RequestParam long id, @RequestParam String title, @RequestParam String content, RedirectAttributes redirectAttributes)
+    {
         postService.findById(id).ifPresentOrElse(post -> {
             post.setTitle(title);
             post.setContent(content);
@@ -45,5 +53,23 @@ public class PostController
         });
         redirectAttributes.addFlashAttribute("successMessage", "Success");
         return new RedirectView("/admin/posts/edit/" + id);
+    }
+
+    @GetMapping("/new")
+    public String create()
+    {
+        return "admin/posts/create";
+    }
+
+    @PostMapping("/new")
+    public RedirectView create(@RequestParam String title, @RequestParam String content,  RedirectAttributes redirectAttributes)
+    {
+        Post newPost = new Post();
+        newPost.setTitle(title);
+        newPost.setContent(content);
+        postService.save(newPost);
+
+        redirectAttributes.addFlashAttribute("successMessage", "Success");
+        return new RedirectView("/admin/posts");
     }
 }
