@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/front}">
 <head><title layout:fragment="title">Home</title></head>
 <body>
     <main layout:fragment="content">
+        <div class="hero bg-base-200 py-10">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">Hello there</h1>
+                    <p class="py-6">
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    </p>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
         <section class="py-12">
-            <h2>Home</h2>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-8">Derniers articles</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div th:each="post : ${posts}" class="bg-white rounded-2xl shadow p-6 hover:shadow-md transition">
+                        <h3  th:text="${post.title}" class="text-xl font-semibold mb-2">Title</h3>
+                        <p  th:text="${post.content}" class="text-gray-600 mb-4">Content</p>
+                        <a th:href="@{/posts/{id}(id=${post.id})}" class="text-indigo-600 font-medium hover:underline">Lire la suite →</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 </body>

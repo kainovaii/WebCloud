@@ -11,7 +11,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 public class ThymeleafConfig {
 
     @Bean
-    public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
+    public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver)
+    {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver);
         engine.addDialect(new SpringSecurityDialect());

@@ -19,23 +19,7 @@ public class PostController
         this.postService = postService;
     }
 
-    @GetMapping
-    public List<Post> getAllPosts()
-    {
-        return postService.findAll();
-    }
-
-    @GetMapping("/create")
-    public Post createPostGet()
-    {
-        Post newPost = new Post();
-        newPost.setId(1);
-        newPost.setTitle("Diu eius haec Caesare praetorium.");
-        newPost.setContent("Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.");
-        return postService.save(newPost);
-    }
-
-    @GetMapping("/all")
+    @GetMapping()
     public String allPosts(Model model) {
         model.addAttribute("posts", postService.findAll());
         return "posts/list";
@@ -49,6 +33,16 @@ public class PostController
             return "posts/show";
         })
         .orElse("error/404");
+    }
+
+    @GetMapping("/create")
+    public Post createPostGet()
+    {
+        Post newPost = new Post();
+        newPost.setId(1);
+        newPost.setTitle("Diu eius haec Caesare praetorium.");
+        newPost.setContent("Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.");
+        return postService.save(newPost);
     }
 
     @DeleteMapping("/{id}")

@@ -1,36 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/front}">
 <head><title layout:fragment="title">Connexion</title></head>
 <body>
-<main layout:fragment="content">
-
-    <div th:if="${param.error}">
-        <p style="color: red;">Nom d'utilisateur ou mot de passe invalide.</p>
-    </div>
-
-    <form th:action="@{/users/login}" method="post" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow space-y-6 mt-10">
-        <div>
-            <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
-            <input type="text" name="username" id="username"
-                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+    <main layout:fragment="content">
+        <div class="mb-[20px]">
+            <div th:if="${param.error}">
+                <p style="color: red;">Nom d'utilisateur ou mot de passe invalide.</p>
+            </div>
+            <form th:action="@{/users/login}" method="post" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow space-y-6 mt-10">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+                    <input type="text" name="username" id="username" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                    <input type="password" name="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                </div>
+                <div>
+                    <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Se connecter</button>
+                </div>
+            </form>
         </div>
-
-        <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-            <input type="password" name="password" id="password"
-                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
-        </div>
-
-        <div>
-            <button type="submit"
-                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                Se connecter
-            </button>
-        </div>
-    </form>
-
-
-
-</main>
+    </main>
 </body>
 </html>

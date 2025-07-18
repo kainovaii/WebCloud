@@ -15,11 +15,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-public class SecurityConfig {
-
+public class SecurityConfig
+{
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(@Qualifier("customUserDetailsService") UserDetailsService userDetailsService) {
+    public SecurityConfig(@Qualifier("customUserDetailsService") UserDetailsService userDetailsService)
+    {
         this.userDetailsService = userDetailsService;
     }
 
@@ -29,7 +30,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider()
+    {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
@@ -37,10 +39,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
+    {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/login", "/users/register", "/posts/**", "/css/**", "/js/**").permitAll()
+                        .requestMatchers(
+                                "/admin/**", "/users/login", "/users/register", "/", "/posts/**", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
