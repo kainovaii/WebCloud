@@ -1,4 +1,4 @@
-package fr.kainovaii.blogspring.controller.front;
+package fr.kainovaii.blogspring.controller;
 
 import fr.kainovaii.blogspring.Component.RouteAccessChecker;
 import org.springframework.beans.factory.annotation.Autowired;

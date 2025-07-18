@@ -2,10 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
 <body>
     <div layout:fragment="content">
-        <div class="card shadow mb-4">
-            <h3 th:text="${post.title}" class="text-xl font-semibold mb-2"></h3>
-            <p th:text="${post.content}" class="text-gray-600 mb-4"></p>
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${successMessage}"></span>
         </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <form th:action="@{/admin/posts/edit}" method="post">
+                    <input type="hidden" th:name="id" th:value="${post.id}" />
+
+                    <div class="form-group m-0 p-0">
+                        <label for="title">Title :</label><br>
+                        <input class="form-control" type="text" id="title" name="title" th:value="${post.title}" required><br><br>
+                    </div>
+
+                    <div class="form-group m-0 p-0">
+                        <label for="content">Content :</label><br>
+                        <textarea  class="form-control" id="content" name="content" rows="10" cols="50" th:text="${post.content}"></textarea><br><br>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+
+
     </div>
 </body>
 </html>
