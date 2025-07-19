@@ -6,8 +6,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.io.File;
+import java.io.IOException;
 
 
 @Controller("adminPostController")
@@ -60,16 +64,41 @@ public class PostController
     }
 
     @PostMapping("/new")
-    public RedirectView create(@RequestParam String title, @RequestParam String content,  RedirectAttributes redirectAttributes)
-    {
+    public RedirectView create(
+            @RequestParam String title,
+            @RequestParam String content,
+            @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
+            RedirectAttributes redirectAttributes) {
+
         Post newPost = new Post();
         newPost.setTitle(title);
         newPost.setContent(content);
-        postService.save(newPost);
 
-        redirectAttributes.addFlashAttribute("successMessage", "Success");
+        if (thumbnail != null && !thumbnail.isEmpty()) {
+            try {
+                String rootPath = System.getProperty("user.dir");
+                File uploadDir = new File(rootPath + File.separator + "uploads");
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdirs();
+                }
+
+                String filename = System.currentTimeMillis() + "_" + thumbnail.getOriginalFilename();
+                File dest = new File(uploadDir, filename);
+                thumbnail.transferTo(dest);
+
+                newPost.setThumbnail(filename);
+            } catch (IOException e) {
+                e.printStackTrace();
+                redirectAttributes.addFlashAttribute("errorMessage", "File upload failed");
+                return new RedirectView("/admin/posts");
+            }
+        }
+
+        postService.save(newPost);
+        redirectAttributes.addFlashAttribute("successMessage", "Post created successfully");
         return new RedirectView("/admin/posts");
     }
+
 
     @GetMapping("/delete/{id}")
     public RedirectView delete(@PathVariable long id, RedirectAttributes redirectAttributes)

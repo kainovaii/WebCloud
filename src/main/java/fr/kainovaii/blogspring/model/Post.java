@@ -20,6 +20,9 @@ public class Post
 
     private LocalDateTime updatedAt;
 
+    @Column(nullable = true)
+    private String thumbnail;
+
     @ManyToOne
     private User author;
 
@@ -52,5 +55,8 @@ public class Post
     public void setContent(String content) {
         this.content = content;
     }
+    public String getThumbnail() { return thumbnail; }
+    public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
+
 }
 
