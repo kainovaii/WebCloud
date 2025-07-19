@@ -44,16 +44,34 @@ public class PostController
     }
 
     @PostMapping("/edit")
-    public RedirectView edit(@RequestParam long id, @RequestParam String title, @RequestParam String content, RedirectAttributes redirectAttributes)
-    {
+    public RedirectView edit(
+            @RequestParam long id,
+            @RequestParam String title,
+            @RequestParam String content,
+            @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
+            RedirectAttributes redirectAttributes) {
+
         postService.findById(id).ifPresentOrElse(post -> {
             post.setTitle(title);
             post.setContent(content);
+
+            try {
+                String uploadedFilename = handleFileUpload(thumbnail);
+                if (uploadedFilename != null) {
+                    post.setThumbnail(uploadedFilename);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                redirectAttributes.addFlashAttribute("errorMessage", "File upload failed");
+                // Optionnel : gérer erreur et quitter la lambda
+            }
+
             postService.save(post);
         }, () -> {
-            throw new RuntimeException("Post non trouvé avec l'ID " + id);
+            throw new RuntimeException("Post not found with ID " + id);
         });
-        redirectAttributes.addFlashAttribute("successMessage", "Success");
+
+        redirectAttributes.addFlashAttribute("successMessage", "Post updated successfully");
         return new RedirectView("/admin/posts/edit/" + id);
     }
 
@@ -74,31 +92,21 @@ public class PostController
         newPost.setTitle(title);
         newPost.setContent(content);
 
-        if (thumbnail != null && !thumbnail.isEmpty()) {
-            try {
-                String rootPath = System.getProperty("user.dir");
-                File uploadDir = new File(rootPath + File.separator + "uploads");
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdirs();
-                }
-
-                String filename = System.currentTimeMillis() + "_" + thumbnail.getOriginalFilename();
-                File dest = new File(uploadDir, filename);
-                thumbnail.transferTo(dest);
-
-                newPost.setThumbnail(filename);
-            } catch (IOException e) {
-                e.printStackTrace();
-                redirectAttributes.addFlashAttribute("errorMessage", "File upload failed");
-                return new RedirectView("/admin/posts");
+        try {
+            String uploadedFilename = handleFileUpload(thumbnail);
+            if (uploadedFilename != null) {
+                newPost.setThumbnail(uploadedFilename);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("errorMessage", "File upload failed");
+            return new RedirectView("/admin/posts");
         }
 
         postService.save(newPost);
         redirectAttributes.addFlashAttribute("successMessage", "Post created successfully");
         return new RedirectView("/admin/posts");
     }
-
 
     @GetMapping("/delete/{id}")
     public RedirectView delete(@PathVariable long id, RedirectAttributes redirectAttributes)
@@ -110,5 +118,23 @@ public class PostController
         }
         redirectAttributes.addFlashAttribute("successMessage", "Success");
         return new RedirectView("/admin/posts");
+    }
+
+    private String handleFileUpload(MultipartFile file) throws IOException {
+        if (file == null || file.isEmpty()) {
+            return null;
+        }
+
+        String rootPath = System.getProperty("user.dir");
+        File uploadDir = new File(rootPath + File.separator + "uploads");
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        File dest = new File(uploadDir, filename);
+        file.transferTo(dest);
+
+        return filename;
     }
 }

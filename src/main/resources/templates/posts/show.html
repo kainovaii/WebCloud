@@ -25,11 +25,10 @@
                     <figure class="mb-5">
                         <img th:src="@{'/uploads/' + ${post.thumbnail}}" alt="" />
                     </figure>
-                    <main th:text="${post.content}"></main>
+                    <main th:utext="${post.content}"></main>
                 </article>
             </div>
         </main>
-
     </main>
 </body>
 </html>
