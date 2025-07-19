@@ -1,8 +1,12 @@
 package fr.kainovaii.blogspring.controller.admin;
 
 import fr.kainovaii.blogspring.model.Post;
+import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.service.PostService;
+import fr.kainovaii.blogspring.service.UserService;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +23,12 @@ import java.io.IOException;
 public class PostController
 {
     private final PostService postService;
+    private final UserService userService;
 
-    public PostController(PostService postService)
+    public PostController(PostService postService, UserService userService)
     {
         this.postService = postService;
+        this.userService = userService;
     }
 
     @GetMapping("")
@@ -86,11 +92,17 @@ public class PostController
             @RequestParam String title,
             @RequestParam String content,
             @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            @AuthenticationPrincipal UserDetails userDetails) {
 
         Post newPost = new Post();
         newPost.setTitle(title);
         newPost.setContent(content);
+
+        String username = userDetails.getUsername();
+
+        User user = userService.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found : " + username));
+        newPost.setAuthorId(user.getId());
 
         try {
             String uploadedFilename = handleFileUpload(thumbnail);

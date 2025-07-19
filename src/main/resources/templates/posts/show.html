@@ -11,7 +11,7 @@
                             <div class="inline-flex items-center mr-3 text-sm text-gray-900">
                                 <img class="mr-4 w-16 h-16 rounded-full" th:src="@{/svg/undraw_developer-avatar.svg}" alt="John Doe" />
                                 <div>
-                                    <a href="#" rel="author" class="text-xl font-bold text-gray-900">John Doe</a>
+                                    <a href="#" rel="author" class="text-xl font-bold text-gray-900"><span th:text="${authorUsername}">default-content</span></a>
                                     <p class="text-base text-gray-500">
                                         <span class="badge badge-soft badge-sm badge-primary">Developer</span>
                                         <span class="badge badge-soft badge-sm badge-error">Administrator</span>
@@ -25,7 +25,7 @@
                     <figure class="mb-5">
                         <img th:src="@{'/uploads/' + ${post.thumbnail}}" alt="" />
                     </figure>
-                    <main th:utext="${post.content}"></main>
+                    <main th:utext="${post.content}">default-content</main>
                 </article>
             </div>
         </main>

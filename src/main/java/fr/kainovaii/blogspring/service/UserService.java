@@ -1,5 +1,6 @@
 package fr.kainovaii.blogspring.service;
 
+import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService
@@ -21,6 +23,16 @@ public class UserService implements UserDetailsService
     {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public Optional<User> findById(Long id)
+    {
+        return userRepository.findById(id);
+    }
+
+    public Optional<User> findByUsername(String username)
+    {
+        return userRepository.findByUsername(username);
     }
 
     public void registerUser(User user)

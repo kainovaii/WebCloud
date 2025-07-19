@@ -1,7 +1,9 @@
 package fr.kainovaii.blogspring.controller.front;
 
 import fr.kainovaii.blogspring.model.Post;
+import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.service.PostService;
+import fr.kainovaii.blogspring.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +16,16 @@ import java.util.List;
 public class PostController
 {
     private final PostService postService;
+    private final UserService userService;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService, UserService userService) {
         this.postService = postService;
+        this.userService = userService;
     }
 
     @GetMapping()
-    public String allPosts(Model model) {
+    public String allPosts(Model model)
+    {
         model.addAttribute("posts", postService.findAll());
         return "posts/list";
     }
@@ -29,20 +34,15 @@ public class PostController
     public String showPost(Model model, @PathVariable Long id) {
         return postService.findById(id)
         .map(post -> {
+            User author = userService.findById(post.getAuthorId())
+                    .orElse(null);
+
             model.addAttribute("post", post);
+            model.addAttribute("authorUsername", author != null ? author.getUsername() : "Inconnu");
+
             return "posts/show";
         })
         .orElse("error/404");
-    }
-
-    @GetMapping("/create")
-    public Post createPostGet()
-    {
-        Post newPost = new Post();
-        newPost.setId(1);
-        newPost.setTitle("Diu eius haec Caesare praetorium.");
-        newPost.setContent("Sin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.");
-        return postService.save(newPost);
     }
 
     @DeleteMapping("/{id}")

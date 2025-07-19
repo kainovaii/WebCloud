@@ -1,12 +1,8 @@
-package fr.kainovaii.blogspring.Component;
+package fr.kainovaii.blogspring.component;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import java.util.regex.Pattern;
 
 @Component("webAccess")
 public class RouteAccessChecker

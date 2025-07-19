@@ -23,8 +23,7 @@ public class Post
     @Column(nullable = true)
     private String thumbnail;
 
-    @ManyToOne
-    private User author;
+    private Long authorId;
 
     @PrePersist
     protected void onCreate() {
@@ -57,6 +56,7 @@ public class Post
     }
     public String getThumbnail() { return thumbnail; }
     public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
-
+    public long getAuthorId() { return authorId; }
+    public void setAuthorId(long authorId) { this.authorId = authorId; }
 }
 

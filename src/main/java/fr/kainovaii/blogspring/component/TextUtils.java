@@ -1,4 +1,4 @@
-package fr.kainovaii.blogspring.Component;
+package fr.kainovaii.blogspring.component;
 
 import org.springframework.stereotype.Component;
 
