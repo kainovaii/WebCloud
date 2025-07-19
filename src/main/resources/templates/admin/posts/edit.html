@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
 <body>
     <div layout:fragment="content">
+
+
         <div class="row mb-5">
             <div class="col-md-6">
                 <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,8 +21,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="content">Content :</label><br>
-                                <textarea  class="form-control" id="content" name="content" rows="10" cols="50" th:text="${post.content}"></textarea>
+                                <label for="content-editor">Content :</label><br>
+                                <textarea class="form-control" id="content-editor" name="content" rows="10" cols="50" th:text="${post.content}"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -29,6 +31,7 @@
                             </div>
 
                             <button class="btn btn-primary" type="submit">Save</button>
+                            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary" type="submit">View</a>
                         </form>
                     </div>
                 </div>
@@ -44,7 +47,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 </html>

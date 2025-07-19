@@ -15,6 +15,7 @@
                 <li><a class="text-red-500" th:href="@{/admin}">Administration</a></li>
                 <li th:if="${webAccess.isRouteMatch('/posts')}"><a th:href="@{/admin/posts/new}">New post</a></li>
                 <li th:if="${webAccess.isRouteMatch('/posts/:id')}"><a th:href="@{/admin/posts/edit/{id}(id=${post.id})}">Edit post</a></li>
+                <li th:if="${webAccess.isRouteMatch('/posts/:id')}"><a th:href="@{/admin/posts/delete/{id}(id=${post.id})}">Delete post</a></li>
             </ul>
         </div>
     </div>
@@ -26,7 +27,7 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><a th:href="@{/posts}">Posts</a></li>
+                <li><a th:href="@{/posts}">Articles</a></li>
             </ul>
         </div>
         <span sec:authorize="isAnonymous()" class="navbar-end"><a class="btn" th:href="@{/users/login}">Member</a></span>

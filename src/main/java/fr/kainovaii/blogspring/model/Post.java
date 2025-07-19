@@ -58,5 +58,7 @@ public class Post
     public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
     public long getAuthorId() { return authorId; }
     public void setAuthorId(long authorId) { this.authorId = authorId; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
 }
 

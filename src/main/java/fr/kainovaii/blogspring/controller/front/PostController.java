@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -34,11 +37,13 @@ public class PostController
     public String showPost(Model model, @PathVariable Long id) {
         return postService.findById(id)
         .map(post -> {
-            User author = userService.findById(post.getAuthorId())
-                    .orElse(null);
+            User author = userService.findById(post.getAuthorId()).orElse(null);
+            String date = post.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
 
             model.addAttribute("post", post);
+            model.addAttribute("createdAt", date);
             model.addAttribute("authorUsername", author != null ? author.getUsername() : "Inconnu");
+            model.addAttribute("authorRole", author != null ? author.getRole() : "Inconnu");
 
             return "posts/show";
         })
