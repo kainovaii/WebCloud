@@ -44,7 +44,7 @@ public class SecurityConfig
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/admin/**", "/users/login", "/users/register", "/", "/posts/**", "/assets/**").permitAll()
+                                "/admin/**", "/users/login", "/users/register", "/", "/posts/**", "/assets/**", "/svg/**", "/logo/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

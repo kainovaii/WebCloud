@@ -1,8 +1,8 @@
 package fr.kainovaii.blogspring.controller.admin;
 
-import fr.kainovaii.blogspring.Component.SnowflakeIdGenerator;
 import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.service.PostService;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,10 @@ import org.springframework.web.servlet.view.RedirectView;
 public class PostController
 {
     private final PostService postService;
-    private final SnowflakeIdGenerator idGenerator;
 
-    public PostController(PostService postService, SnowflakeIdGenerator idGenerator)
+    public PostController(PostService postService)
     {
         this.postService = postService;
-        this.idGenerator = idGenerator;
     }
 
     @GetMapping("")
@@ -69,6 +67,18 @@ public class PostController
         newPost.setContent(content);
         postService.save(newPost);
 
+        redirectAttributes.addFlashAttribute("successMessage", "Success");
+        return new RedirectView("/admin/posts");
+    }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView delete(@PathVariable long id, RedirectAttributes redirectAttributes)
+    {
+        try {
+            postService.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("Post with ID " + id + " not found.");
+        }
         redirectAttributes.addFlashAttribute("successMessage", "Success");
         return new RedirectView("/admin/posts");
     }

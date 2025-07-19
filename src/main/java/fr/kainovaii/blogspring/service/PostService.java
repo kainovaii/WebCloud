@@ -2,7 +2,9 @@ package fr.kainovaii.blogspring.service;
 
 import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.repository.PostRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
