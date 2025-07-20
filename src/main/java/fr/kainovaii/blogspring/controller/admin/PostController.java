@@ -5,6 +5,7 @@ import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.service.PostService;
 import fr.kainovaii.blogspring.service.UserService;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.File;
 import java.io.IOException;
 
-
+@PreAuthorize("hasRole('ADMIN')")
 @Controller("adminPostController")
 @RequestMapping("/admin/posts")
 public class PostController

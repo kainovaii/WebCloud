@@ -3,6 +3,11 @@
 <body>
     <div layout:fragment="content">
         <div class="row mb-3">
+            <div class="col-md-12 mb-3">
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span th:text="${successMessage}"></span>
+                </div>
+            </div>
             <div class="col-md-6">
                 <a class="btn btn-primary" th:href="@{/admin/posts}"><i class="fas fa-solid fa-arrow-left"></i></a>
             </div>
@@ -13,9 +18,6 @@
         </div>
         <div class="row mb-5">
             <div class="col-md-6">
-                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
-                    <span th:text="${successMessage}"></span>
-                </div>
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <form th:action="@{/admin/posts/edit}" method="post" enctype="multipart/form-data">
@@ -30,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cover">Cover Image :</label><br>
-                                <input class="form-control" type="file" id="cover" name="thumbnail">
+                                <input class="form-control pb-1" type="file" id="cover" name="thumbnail">
                             </div>
                             <button class="btn btn-primary" type="submit">Save</button>
                         </form>

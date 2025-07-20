@@ -42,25 +42,23 @@ public class SecurityConfig
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/admin/**", "/users/login", "/users/register", "/", "/posts/**", "/assets/**", "/svg/**", "/logo/**", "/uploads/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/users/login")
-                        .loginProcessingUrl("/users/login")
-                        .defaultSuccessUrl("/", true)
-                        .failureUrl("/users/login?error=true")
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/users/logout")
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/users/logout", "GET"))
-                        .logoutSuccessUrl("/users/login?logout=true")
-                        .permitAll()
-                );
-
+        .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/admin/**", "/users/login", "/users/register", "/", "/posts/**", "/assets/**", "/svg/**", "/logo/**", "/uploads/**").permitAll()
+                .anyRequest().authenticated()
+        )
+        .formLogin(form -> form
+                .loginPage("/users/login")
+                .loginProcessingUrl("/users/login")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/users/login?error=true")
+                .permitAll()
+        )
+        .logout(logout -> logout
+                .logoutUrl("/users/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/users/logout", "GET"))
+                .logoutSuccessUrl("/users/login?logout=true")
+                .permitAll()
+        );
         return http.build();
     }
 }

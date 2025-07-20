@@ -33,4 +33,8 @@ public class PostService
     public void deleteById(Long id) {
         postRepository.deleteById(id);
     }
+
+    public long countPosts() {
+        return postRepository.countPosts();
+    }
 }
