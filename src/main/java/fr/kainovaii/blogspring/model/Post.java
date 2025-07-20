@@ -16,6 +16,8 @@ public class Post
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    private String slug;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -59,6 +61,11 @@ public class Post
     public long getAuthorId() { return authorId; }
     public void setAuthorId(long authorId) { this.authorId = authorId; }
     public LocalDateTime getCreatedAt() { return createdAt; }
-
+    public String getSlug() {
+        return slug;
+    }
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
 }
 

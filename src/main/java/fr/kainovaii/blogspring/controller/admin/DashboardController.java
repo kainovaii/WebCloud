@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @Controller
 @RequestMapping("/admin")
 public class DashboardController
 {
-
     private final PostService postService;
     private final UserService userService;
 

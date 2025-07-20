@@ -26,6 +26,10 @@ public class PostService
         return postRepository.findById(id);
     }
 
+    public Optional<Post> findBySlug(String slug) {
+        return postRepository.findBySlug(slug);
+    }
+
     public Post save(Post post) {
         return postRepository.save(post);
     }

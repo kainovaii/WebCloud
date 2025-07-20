@@ -1,5 +1,6 @@
 package fr.kainovaii.blogspring.controller.admin;
 
+import com.github.slugify.Slugify;
 import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.service.PostService;
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.File;
 import java.io.IOException;
 
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @Controller("adminPostController")
 @RequestMapping("/admin/posts")
 public class PostController
@@ -70,7 +71,6 @@ public class PostController
             } catch (IOException e) {
                 e.printStackTrace();
                 redirectAttributes.addFlashAttribute("errorMessage", "File upload failed");
-                // Optionnel : gérer erreur et quitter la lambda
             }
 
             postService.save(post);
@@ -94,11 +94,13 @@ public class PostController
             @RequestParam String content,
             @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
             RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal UserDetails userDetails) {
+            @AuthenticationPrincipal UserDetails userDetails,
+            Slugify slugify) {
 
         Post newPost = new Post();
         newPost.setTitle(title);
         newPost.setContent(content);
+        newPost.setSlug(slugify.slugify(title));
 
         String username = userDetails.getUsername();
 

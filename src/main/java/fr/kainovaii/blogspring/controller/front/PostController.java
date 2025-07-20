@@ -33,9 +33,9 @@ public class PostController
         return "posts/list";
     }
 
-    @GetMapping("/{id}")
-    public String showPost(Model model, @PathVariable Long id) {
-        return postService.findById(id)
+    @GetMapping("/{slug}")
+    public String showPost(Model model, @PathVariable String slug) {
+        return postService.findBySlug(slug)
         .map(post -> {
             User author = userService.findById(post.getAuthorId()).orElse(null);
             String date = post.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));

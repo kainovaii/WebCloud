@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/" # Emplacement de ton pom.xml
+    schedule:
+      interval: "weekly" # Vérifie les mises à jour chaque semaine
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+      include: "scope"
