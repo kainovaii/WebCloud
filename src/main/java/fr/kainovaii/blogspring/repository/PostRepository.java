@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Long>
 {
-
     @Query("SELECT COUNT(p) FROM Post p")
-    long countPosts();
+    long count();
 }

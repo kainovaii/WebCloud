@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,13 +44,13 @@ public class SecurityConfig
     {
         http
         .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/admin/**", "/users/login", "/users/register", "/", "/posts/**", "/assets/**", "/svg/**", "/logo/**", "/uploads/**").permitAll()
+                .requestMatchers("/users/login", "/users/register", "/", "/error", "/posts/**", "/assets/**", "/svg/**", "/logo/**", "/uploads/**", "/.well-known/**").permitAll()
                 .anyRequest().authenticated()
         )
         .formLogin(form -> form
                 .loginPage("/users/login")
                 .loginProcessingUrl("/users/login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/", false)
                 .failureUrl("/users/login?error=true")
                 .permitAll()
         )
@@ -60,5 +61,10 @@ public class SecurityConfig
                 .permitAll()
         );
         return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/.well-known/**");
     }
 }

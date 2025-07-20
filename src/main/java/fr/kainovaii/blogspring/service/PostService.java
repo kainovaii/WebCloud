@@ -34,7 +34,7 @@ public class PostService
         postRepository.deleteById(id);
     }
 
-    public long countPosts() {
-        return postRepository.countPosts();
+    public long count() {
+        return postRepository.count();
     }
 }

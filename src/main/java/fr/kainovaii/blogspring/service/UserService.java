@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +29,15 @@ public class UserService implements UserDetailsService
     public Optional<User> findById(Long id)
     {
         return userRepository.findById(id);
+    }
+
+    public List<User> findAll()
+    {
+        return userRepository.findAll();
+    }
+
+    public long count() {
+        return userRepository.count();
     }
 
     public Optional<User> findByUsername(String username)
