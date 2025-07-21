@@ -17,8 +17,12 @@ public class RouteAccessChecker
 
     public boolean isRouteMatch(String pattern) {
         String currentPath = getCurrentPath();
-        if ("/posts/:id".equals(pattern)) {
-            return currentPath.startsWith("/posts/") && currentPath.substring(7).matches("\\d+");
+
+        if ("/posts/:slug".equals(pattern)) {
+            if (currentPath.startsWith("/posts/") && currentPath.length() > "/posts/".length()) {
+                return true;
+            }
+            return false;
         }
         return currentPath.equals(pattern);
     }
