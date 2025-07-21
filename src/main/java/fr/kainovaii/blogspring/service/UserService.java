@@ -40,6 +40,10 @@ public class UserService implements UserDetailsService
         return userRepository.count();
     }
 
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
+
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -51,9 +55,13 @@ public class UserService implements UserDetailsService
 
     public void registerUser(User user)
     {
+        String normalizedUsername = user.getUsername().toLowerCase();
+        if (userRepository.existsByUsernameIgnoreCase(normalizedUsername)) {
+            throw new IllegalArgumentException("Username already taken");
+        }
         String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setUsername(normalizedUsername);
         user.setPassword(encodedPassword);
-        user.setEmail(user.getEmail());
         user.setRole("USER");
         userRepository.save(user);
     }

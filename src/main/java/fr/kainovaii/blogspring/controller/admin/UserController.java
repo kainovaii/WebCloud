@@ -1,6 +1,7 @@
 package fr.kainovaii.blogspring.controller.admin;
 
 import fr.kainovaii.blogspring.service.UserService;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,4 +59,17 @@ public class UserController
         redirectAttributes.addFlashAttribute("successMessage", "User updated successfully");
         return new RedirectView("/admin/users/edit/" + id);
     }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView delete(@PathVariable long id, RedirectAttributes redirectAttributes)
+    {
+        try {
+            userService.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("Users with ID " + id + " not found.");
+        }
+        redirectAttributes.addFlashAttribute("successMessage", "Success");
+        return new RedirectView("/admin/users");
+    }
+
 }
