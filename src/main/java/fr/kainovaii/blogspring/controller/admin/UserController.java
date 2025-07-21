@@ -71,5 +71,4 @@ public class UserController
         redirectAttributes.addFlashAttribute("successMessage", "Success");
         return new RedirectView("/admin/users");
     }
-
 }

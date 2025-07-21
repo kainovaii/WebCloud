@@ -39,8 +39,9 @@
                                     <div class="form-group">
                                         <label for="role">Role :</label>
                                         <select class="form-control" id="role" name="role">
-                                            <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">ADMIN</option>
                                             <option value="USER" th:selected="${user.role == 'USER'}">USER</option>
+                                            <option value="EDITOR" th:selected="${user.role == 'EDITOR'}">EDITOR</option>
+                                            <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">ADMIN</option>
                                         </select>
                                     </div>
                                 </div>

@@ -15,7 +15,8 @@ public class RouteAccessChecker
         return request.getRequestURI();
     }
 
-    public boolean isRouteMatch(String pattern) {
+    public boolean isRouteMatch(String pattern)
+    {
         String currentPath = getCurrentPath();
 
         if ("/posts/:slug".equals(pattern)) {

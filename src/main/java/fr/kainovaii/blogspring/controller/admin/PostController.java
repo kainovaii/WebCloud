@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.File;
 import java.io.IOException;
 
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
 @Controller("adminPostController")
 @RequestMapping("/admin/posts")
 public class PostController
@@ -57,11 +57,13 @@ public class PostController
             @RequestParam String title,
             @RequestParam String content,
             @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            Slugify slugify) {
 
         postService.findById(id).ifPresentOrElse(post -> {
             post.setTitle(title);
             post.setContent(content);
+            post.setSlug(slugify.slugify(title));
 
             try {
                 String uploadedFilename = handleFileUpload(thumbnail);
