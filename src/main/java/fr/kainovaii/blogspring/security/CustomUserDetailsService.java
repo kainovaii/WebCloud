@@ -20,13 +20,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String normalizedUsername = username.toLowerCase();
 
-        User user = userRepository.findByUsernameIgnoreCase(normalizedUsername)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        User user = userRepository.findByUsernameIgnoreCase(normalizedUsername).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsername()) // tu peux aussi forcer ici `.toLowerCase()`
-                .password(user.getPassword())
-                .roles(user.getRole())
-                .build();
+        .username(user.getUsername())
+        .password(user.getPassword())
+        .roles(user.getRole())
+        .build();
     }
 }
