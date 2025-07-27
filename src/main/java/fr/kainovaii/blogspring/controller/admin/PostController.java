@@ -53,12 +53,12 @@ public class PostController
 
     @PostMapping("/edit")
     public RedirectView edit(
-            @RequestParam long id,
-            @RequestParam String title,
-            @RequestParam String content,
-            @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
-            RedirectAttributes redirectAttributes,
-            Slugify slugify) {
+        @RequestParam long id,
+        @RequestParam String title,
+        @RequestParam String content,
+        @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
+        RedirectAttributes redirectAttributes,
+        Slugify slugify) {
 
         postService.findById(id).ifPresentOrElse(post -> {
             post.setTitle(title);
@@ -92,12 +92,12 @@ public class PostController
 
     @PostMapping("/new")
     public RedirectView create(
-            @RequestParam String title,
-            @RequestParam String content,
-            @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
-            RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal UserDetails userDetails,
-            Slugify slugify) {
+        @RequestParam String title,
+        @RequestParam String content,
+        @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
+        RedirectAttributes redirectAttributes,
+        @AuthenticationPrincipal UserDetails userDetails,
+        Slugify slugify) {
 
         Post newPost = new Post();
         newPost.setTitle(title);
