@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en"     xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Empty page - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
     <link href="/assets/css/tabler.css" rel="stylesheet" />
-    <style>
-        @import url("https://rsms.me/inter/inter.css");
-    </style>
+    <style>@import url("https://rsms.me/inter/inter.css");</style>
     <script src="/assets/js/tabler-theme.min.js"></script>
+    <title th:text="${pageTitle} ?: 'BlogSpring'">BlogSpring</title>
+    <!-- Temp -->
+    <script src="https://cdn.tiny.cloud/1/evof26kybqfah0epcrj7zriznybb7ogzlhxmfbrhj4hdnc09/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea#content-editor'});</script>
 </head>
 <body>
 <div class="page">
