@@ -2,10 +2,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.kainovaii.blogspring</groupId>
     <artifactId>BlogSpring</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>BlogSpring</name>
-    <description>Spring Boot + SQLite Example</description>
+    <description>Blog in java spring using SQLite</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
