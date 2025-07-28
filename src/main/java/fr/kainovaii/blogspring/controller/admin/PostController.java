@@ -1,7 +1,7 @@
 package fr.kainovaii.blogspring.controller.admin;
 
 import com.github.slugify.Slugify;
-import fr.kainovaii.blogspring.Dto.PostWithAuthor;
+import fr.kainovaii.blogspring.dto.PostWithAuthor;
 import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.service.PostService;

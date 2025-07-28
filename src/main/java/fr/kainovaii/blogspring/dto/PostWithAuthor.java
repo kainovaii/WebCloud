@@ -1,4 +1,4 @@
-package fr.kainovaii.blogspring.Dto;
+package fr.kainovaii.blogspring.dto;
 
 import fr.kainovaii.blogspring.model.Post;
 
