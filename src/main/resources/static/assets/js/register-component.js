@@ -1,0 +1,1 @@
+WebComponent('title-banner', 'title-banner');
