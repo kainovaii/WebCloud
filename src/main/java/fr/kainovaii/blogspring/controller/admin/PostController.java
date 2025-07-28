@@ -1,6 +1,7 @@
 package fr.kainovaii.blogspring.controller.admin;
 
 import com.github.slugify.Slugify;
+import fr.kainovaii.blogspring.Dto.PostWithAuthor;
 import fr.kainovaii.blogspring.model.Post;
 import fr.kainovaii.blogspring.model.User;
 import fr.kainovaii.blogspring.service.PostService;
@@ -18,6 +19,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
 @Controller("adminPostController")
@@ -36,7 +41,12 @@ public class PostController
     @GetMapping("")
     public String home(Model model)
     {
-        model.addAttribute("posts", postService.findAll());
+        List<Post> posts = postService.findAll();
+        Set<Long> authorIds = posts.stream().map(Post::getAuthorId).collect(Collectors.toSet());
+        Map<Long, String> authorNames = userService.getUsernamesByIds(authorIds);
+        List<PostWithAuthor> enrichedPosts = posts.stream().map(post -> new PostWithAuthor(post, authorNames.getOrDefault(post.getAuthorId(),"Inconnu"))).collect(Collectors.toList());
+
+        model.addAttribute("posts", enrichedPosts);
         return "admin/posts/list";
     }
 
@@ -154,4 +164,6 @@ public class PostController
 
         return filename;
     }
+
+
 }

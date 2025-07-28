@@ -10,9 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService
@@ -77,6 +76,12 @@ public class UserService implements UserDetailsService
                 user.getPassword(),
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"))
         );
+    }
+
+    public Map<Long, String> getUsernamesByIds(Set<Long> ids) {
+        List<User> users = userRepository.findAllById(ids);
+        return users.stream()
+                .collect(Collectors.toMap(User::getId, User::getUsername)); // ou getPseudo() si c’est ton champ
     }
 }
 
