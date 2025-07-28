@@ -25143,4 +25143,18 @@ Antialiasing
   transform: rotate(-4deg);
 }
 
+.hero-title {
+    font-size: 48px;
+}
+
+.hero-description {
+    font-size: 20px;
+}
+
+/* Temp */
+html {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 /*# sourceMappingURL=tabler.css.map */
