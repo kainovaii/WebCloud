@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/posts")
@@ -29,7 +31,11 @@ public class PostController
     @GetMapping()
     public String allPosts(Model model)
     {
-        model.addAttribute("posts", postService.findAll());
+        List<Post> posts = postService.findAll().stream()
+                .filter(post -> post.getStatus() == 1)
+                .collect(Collectors.toList());
+
+        model.addAttribute("posts", posts);
         return "posts/list";
     }
 
@@ -45,6 +51,9 @@ public class PostController
             model.addAttribute("authorUsername", author != null ? author.getUsername() : "Inconnu");
             model.addAttribute("authorRole", author != null ? author.getRole() : "Inconnu");
 
+            if (post.getStatus() == 0) {
+                return "redirect:/posts";
+            }
             return "posts/show";
         })
         .orElse("error/404");

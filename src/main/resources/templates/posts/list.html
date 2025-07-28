@@ -5,11 +5,11 @@
     <main layout:fragment="content">
         <section class="container-xl">
             <div class="row mt-5">
-                <div th:each="post : ${posts}" class=" col-md-4">
+                <div th:each="post : ${posts}" th:if="${post.status == 1}" class="col-md-4">
                     <div class="card shadow">
                         <div class="card-body">
                             <h3 th:text="${post.title}" class="text-xl font-semibold mb-2">Title</h3>
-                            <p th:utext="${@textUtils.truncateWords(post.content, 70)}" class="text-gray-600 mb-4">Content</p>
+                            <p th:utext="${@textUtils.truncateWords(post.content, 50)}" class="text-gray-600 mb-4">Content</p>
                             <a th:href="@{/posts/{slug}(slug=${post.slug})}" class="text-indigo-600 font-medium hover:underline">Lire la suite →</a>
                         </div>
                     </div>

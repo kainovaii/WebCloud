@@ -27,6 +27,9 @@ public class Post
 
     private Long authorId;
 
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    private int status;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -66,6 +69,12 @@ public class Post
     }
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
 

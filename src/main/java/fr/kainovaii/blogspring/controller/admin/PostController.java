@@ -66,6 +66,7 @@ public class PostController
         @RequestParam long id,
         @RequestParam String title,
         @RequestParam String content,
+        @RequestParam int status,
         @RequestParam(value = "thumbnail", required = false) MultipartFile thumbnail,
         RedirectAttributes redirectAttributes,
         Slugify slugify) {
@@ -74,6 +75,7 @@ public class PostController
             post.setTitle(title);
             post.setContent(content);
             post.setSlug(slugify.slugify(title));
+            post.setStatus(status);
 
             try {
                 String uploadedFilename = handleFileUpload(thumbnail);
@@ -113,6 +115,7 @@ public class PostController
         newPost.setTitle(title);
         newPost.setContent(content);
         newPost.setSlug(slugify.slugify(title));
+        newPost.setStatus(1);
 
         String username = userDetails.getUsername();
 

@@ -64,7 +64,8 @@
                                     <span th:text="${post.post.title}"></span>
                                 </td>
                                 <td class="sort-status">
-                                    <span class="badge bg-success-lt">Active</span>
+                                    <span th:if="${post.post.status == 1}" class="badge bg-success-lt">Active</span>
+                                    <span th:if="${post.post.status == 0}" class="badge bg-danger-lt">Inactive</span>
                                 </td>
                                 <td class="sort-date">
                                     <span th:text="${post.authorName}"></span>

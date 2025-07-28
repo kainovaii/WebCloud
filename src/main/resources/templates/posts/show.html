@@ -3,8 +3,8 @@
 <head><title layout:fragment="title">Articles</title></head>
 <body>
     <main layout:fragment="content">
-        <div class="container-xl pt-2 mb-2">
-            <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="card mb-1">
+        <div class="container-xl pt-2">
+            <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="card mb-3 mt-2">
                 <div class="p-2">
                     <ul class="pagination">
                         <li class="page-item" sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" th:if="${webAccess.isRouteMatch('/posts')}">
@@ -19,7 +19,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="row g-2 align-items-center">
