@@ -284,7 +284,10 @@ h6, .h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  font-size: 18px;
 }
+
+
 
 abbr[title] {
   -webkit-text-decoration: underline dotted;
@@ -13833,13 +13836,13 @@ body[data-bs-theme=dark] .navbar[data-bs-theme=light] {
   --tblr-font-weight-bold: 600;
   --tblr-font-weight-black: 700;
   --tblr-font-weight-headings: var(--tblr-font-weight-bold);
-  --tblr-font-size-h1: 1.5rem;
+  --tblr-font-size-h1: 56px;
   --tblr-font-size-h2: 1.25rem;
   --tblr-font-size-h3: 1rem;
   --tblr-font-size-h4: 0.875rem;
   --tblr-font-size-h5: 0.75rem;
   --tblr-font-size-h6: 0.625rem;
-  --tblr-line-height-h1: 2rem;
+  --tblr-line-height-h1: normal;
   --tblr-line-height-h2: 1.75rem;
   --tblr-line-height-h3: 1.5rem;
   --tblr-line-height-h4: 1.25rem;
@@ -25149,4 +25152,25 @@ Antialiasing
 
 .hero-description {
     font-size: 20px;
+}
+
+.os__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.os__box svg {
+    width: 72px;
+}
+
+.os__box .os__box-name {
+    margin-top: 8px;
+    font-size: 18px !important;
+}
+
+.os__box .os__box-desc {
+    font-size: 14px;
+    color: #888888 !important;
 }

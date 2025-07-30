@@ -32,4 +32,10 @@ public class HomeController
         model.addAttribute("posts", posts);
         return "home";
     }
+
+    @GetMapping("/nos-offres")
+    public String offers()
+    {
+        return "offers";
+    }
 }
