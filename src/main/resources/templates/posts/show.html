@@ -57,9 +57,7 @@
                 </div>
             </div>
             <div class="mt-2">
-                <figure class="mb-5">
-                    <img class="rounded w-full" th:src="@{'/uploads/' + ${post.thumbnail}}" alt="" />
-                </figure>
+                <img class="rounded w-full" th:src="@{'/uploads/' + ${post.thumbnail}}" alt="" />
                 <main th:utext="${post.content}">default-content</main>
             </div>
         </div>

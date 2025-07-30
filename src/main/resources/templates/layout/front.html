@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title th:text="${siteName}" layout:fragment="title"></title>
     <link href="/assets/css/tabler.css" rel="stylesheet" />
+    <link href="https://preview.tabler.io/dist/css/tabler-marketing.min.css?1752697820" rel="stylesheet">
     <style>@import url("https://rsms.me/inter/inter.css");</style>
     <script src="/assets/js/tabler-theme.min.js"></script>
     <script src="/assets/js/component-manager.js"></script>
@@ -34,13 +35,68 @@
                             <span class="nav-link-title">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/posts">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11"/><path d="M8 8l4 0"/><path d="M8 12l4 0"/><path d="M8 16l4 0"/></svg>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <!--<span class="nav-link-icon d-md-none d-lg-inline-block">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                <path d="M15 15l3.35 3.35"></path>
+                                <path d="M9 15l-3.35 3.35"></path>
+                                <path d="M5.65 5.65l3.35 3.35"></path>
+                                <path d="M18.35 5.65l-3.35 3.35"></path></svg>
                             </span>
-                            <span class="nav-link-title">Posts</span>
+                            -->
+                            <span class="nav-link-title">Web Hosting</span>
                         </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns p-2">
+                                <div class="dropdown-menu-column p-1">
+                                    <a class="dropdown-item" href="#">CPanel Hosting</a>
+                                    <a class="dropdown-item" href="#">Plesk Hosting</a>
+                                    <a class="dropdown-item" href="#">Database MySQL</a>
+                                    <a class="dropdown-item" href="#">Wordpress Hosting</a>
+                                </div>
+                                <div class="dropdown-menu-column p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="500" height="400" viewBox="0 0 500 400" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)" style="width: 100%; height: auto">
+                                        <rect x=".5" y=".5" width="499" height="399" rx="2"></rect>
+                                        <line x1="0" y1="0" x2="500" y2="400"></line>
+                                        <line x1="0" y1="400" x2="500" y2="0"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <!--<span class="nav-link-icon d-md-none d-lg-inline-block">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                <path d="M15 15l3.35 3.35"></path>
+                                <path d="M9 15l-3.35 3.35"></path>
+                                <path d="M5.65 5.65l3.35 3.35"></path>
+                                <path d="M18.35 5.65l-3.35 3.35"></path></svg>
+                            </span>
+                            -->
+                            <span class="nav-link-title">Bare Metal Cloud</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns p-2">
+                                <div class="dropdown-menu-column p-1">
+                                    <a class="dropdown-item" href="#">Private Server LXC</a>
+                                    <a class="dropdown-item" href="#">Private Server KVM</a>
+                                    <a class="dropdown-item" href="#">Dedicated Server</a>
+                                </div>
+                                <div class="dropdown-menu-column p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="500" height="400" viewBox="0 0 500 400" fill="transparent" stroke="var(--tblr-border-color, #b8cef1)" style="width: 100%; height: auto">
+                                        <rect x=".5" y=".5" width="499" height="399" rx="2"></rect>
+                                        <line x1="0" y1="0" x2="500" y2="400"></line>
+                                        <line x1="0" y1="400" x2="500" y2="0"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -62,7 +118,7 @@
                 </li>
                 <div sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown" aria-label="Open user menu">
-                        <span class="avatar avatar-sm" style="background-image: url(/svg/undraw_developer-avatar.svg);"> </span>
+                        <span class="avatar avatar-sm" style="background-image: url(https://avatar.oxro.io/avatar.svg?name=KainoVaii&background=066FD1&length=1);"> </span>
                         <div class="d-none d-xl-block ps-2">
                             <div><span sec:authentication="name">default-content</span></div>
                             <div class="mt-1 small">
@@ -72,7 +128,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <a th:href="@{/admin}" class="dropdown-item">Administration</a>
+                        <a sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" th:href="@{/admin}" class="dropdown-item">Administration</a>
                         <a th:href="@{/users/logout}" class="dropdown-item">Logout</a>
                     </div>
                 </div>
@@ -84,20 +140,34 @@
             <h1 class="h3 mb-4 text-gray-800">content-default</h1>
         </div>
 
-        <footer class="footer footer-transparent d-print-none">
-            <div class="container-xl">
-                <div class="row text-center align-items-center flex-row-reverse">
-                    <div class="col-lg-auto ms-lg-auto">
-                        <ul class="list-inline list-inline-dots mb-0">
-                            <li class="list-inline-item">Theme by <a href="https://tabler.io" target="_blank" class="link-primary" rel="noopener">Tabler</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-                        <ul class="list-inline list-inline-dots mb-0">
-                            <li class="list-inline-item">
-                                Copyright &copy; 2025 BlogSpring. All rights reserved.
-                            </li>
-                        </ul>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="container">
+                    <div class="py-3 border-top-light text-center text-lg-start">
+                        <div class="row g-lg-4">
+                            <div class="col-lg-auto text-lg-end order-lg-last">
+                                <div class="row justify-center">
+                                    <div class="col-auto">©<a href="https://codecalm.net" class="link-secondary" target="_blank" rel="noopener noreferrer">codecalm.net</a></div>
+                                    <div class="col-auto">
+                                        <ul class="list-inline list-inline-dots">
+                                            <li class="list-inline-item">
+                                                <a class="link-secondary" href="/terms-of-service">Terms of service</a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a class="link-secondary" href="/privacy-policy">Privacy policy</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                Made with
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-red icon-inline icon-4">
+                                    <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+                                </svg>
+                                in France.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

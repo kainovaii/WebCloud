@@ -1,1 +1,1 @@
-WebComponent('title-banner', 'title-banner');
+WebComponent('bottom-shape', 'bottom-shape');
