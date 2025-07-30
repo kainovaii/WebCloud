@@ -1,8 +1,7 @@
-package fr.kainovaii.shopspring.controller;
+package fr.kainovaii.shopspring.controller.front;
 
 import fr.kainovaii.shopspring.model.CartItem;
 import fr.kainovaii.shopspring.model.Product;
-import fr.kainovaii.shopspring.repository.ProductRepository;
 import fr.kainovaii.shopspring.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
