@@ -1,6 +1,7 @@
 package fr.kainovaii.shopspring.controller.admin;
 
 import fr.kainovaii.shopspring.service.PostService;
+import fr.kainovaii.shopspring.service.ProductService;
 import fr.kainovaii.shopspring.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ public class DashboardController
 {
     private final PostService postService;
     private final UserService userService;
+    private final ProductService productService;
 
-    public DashboardController(PostService postService, UserService userService)
+    public DashboardController(PostService postService, UserService userService, ProductService productService)
     {
         this.postService = postService;
         this.userService = userService;
+        this.productService = productService;
     }
 
     @GetMapping("")
@@ -28,6 +31,7 @@ public class DashboardController
     {
         model.addAttribute("postsCount", postService.count());
         model.addAttribute("usersCount", userService.count());
+        model.addAttribute("productCount", productService.count());
         return "admin/dashboard";
     }
 }

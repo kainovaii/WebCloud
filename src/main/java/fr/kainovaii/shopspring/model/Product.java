@@ -19,7 +19,7 @@ public class Product
 
     private double price;
 
-    @Column(columnDefinition = "TEXT") // SQLite TEXT
+    @Column(columnDefinition = "TEXT")
     @Convert(converter = JsonConverter.class)
     private Map<String, Object> metadata;
 

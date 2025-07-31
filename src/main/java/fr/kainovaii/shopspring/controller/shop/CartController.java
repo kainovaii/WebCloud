@@ -1,4 +1,4 @@
-package fr.kainovaii.shopspring.controller.front;
+package fr.kainovaii.shopspring.controller.shop;
 
 import fr.kainovaii.shopspring.model.CartItem;
 import fr.kainovaii.shopspring.model.Product;
@@ -29,13 +29,14 @@ public class CartController
         double total = getCart(session).values().stream().mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity()).sum();
         model.addAttribute("cart", cart);
         model.addAttribute("total", total);
-        return "cart";
+
+        return "shop/cart";
     }
 
     @GetMapping("/add/{productId}")
     public RedirectView addProduct(@PathVariable Long productId, @RequestParam int quantity, HttpSession session, RedirectAttributes redirectAttributes)
     {
-        Optional<Product> optionalProduct = productService.getProductById(productId);
+        Optional<Product> optionalProduct = productService.getById(productId);
         if (optionalProduct.isEmpty()) {
             redirectAttributes.addFlashAttribute("successMessage", "Product not found");
             return new RedirectView("/cart");
@@ -53,27 +54,25 @@ public class CartController
         return new RedirectView("/cart");
     }
 
-    @GetMapping("/total")
-    public double getTotal(HttpSession session) {
-        return getCart(session).values().stream()
-                .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
-                .sum();
-    }
-
-    @DeleteMapping("/remove/{productId}")
-    public String removeItem(@PathVariable Long productId, HttpSession session) {
+    @GetMapping("/remove/{productId}")
+    public RedirectView removeItem(@PathVariable Long productId, HttpSession session, RedirectAttributes redirectAttributes)
+    {
         getCart(session).remove(productId);
-        return "Product removed from cart.";
+        redirectAttributes.addFlashAttribute("successMessage", "Product removed from cart.");
+        return new RedirectView("/cart");
     }
 
-    @DeleteMapping("/clear")
-    public String clearCart(HttpSession session) {
+    @GetMapping("/clear")
+    public RedirectView clearCart(HttpSession session, RedirectAttributes redirectAttributes)
+    {
         session.removeAttribute(CART_SESSION_KEY);
-        return "Cart cleared.";
+        redirectAttributes.addFlashAttribute("successMessage", "Cart cleared");
+        return new RedirectView("/cart");
     }
 
     @SuppressWarnings("unchecked")
-    private Map<Long, CartItem> getCart(HttpSession session) {
+    private Map<Long, CartItem> getCart(HttpSession session)
+    {
         Map<Long, CartItem> cart = (Map<Long, CartItem>) session.getAttribute(CART_SESSION_KEY);
         if (cart == null) {
             cart = new HashMap<>();

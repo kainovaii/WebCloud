@@ -15,10 +15,26 @@ public class DataLoader {
     @Bean
     CommandLineRunner initDatabase(ProductRepository repository) {
         return args -> {
-            repository.save(new Product(null,"vps-lxc", "std-lxc-2", 5.99, Map.of(
-                    "vCore", 2,
-                    "RAM", 4
+            /*
+            repository.save(new Product(1L,"vps-lxc", "std-lxc-1", 3.99, Map.of(
+                    "core", 1,
+                    "ram", 2,
+                    "storage", 500,
+                    "connection", 300
             )));
+            repository.save(new Product(2L,"vps-lxc", "std-lxc-2", 5.99, Map.of(
+                    "core", 2,
+                    "ram", 4,
+                    "storage", 500,
+                    "connection", 300
+            )));
+            repository.save(new Product(3L,"vps-lxc", "std-lxc-3", 7.99, Map.of(
+                    "core", 4,
+                    "ram", 8,
+                    "storage", 1000,
+                    "connection", 300
+            )));
+             */
         };
     }
 }
