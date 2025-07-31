@@ -7,12 +7,15 @@ import java.util.Map;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+
+    private String type;
 
     private double price;
 
@@ -22,9 +25,10 @@ public class Product {
 
     public Product() {}
 
-    public Product(Long id, String name, double price, Map<String, Object> metadata)
+    public Product(Long id, String type, String name, double price, Map<String, Object> metadata)
     {
         this.id = id;
+        this.type = type;
         this.name = name;
         this.price = price;
         this.metadata = metadata;
@@ -38,6 +42,9 @@ public class Product {
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 
     public Map<String, Object> getMetadata() { return metadata; }
     public void setMetadata(Map<String, Object> metadata) { this.metadata = metadata; }

@@ -5,11 +5,15 @@ import fr.kainovaii.shopspring.model.Product;
 import fr.kainovaii.shopspring.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
-@RestController
+@Controller
 @RequestMapping("/cart")
 public class CartController
 {
@@ -18,14 +22,24 @@ public class CartController
     @Autowired
     private ProductService productService;
 
+    @GetMapping("")
+    public String viewCart(Model model,  HttpSession session)
+    {
+        Collection<CartItem> cart = getCart(session).values();
+        double total = getCart(session).values().stream().mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity()).sum();
+        model.addAttribute("cart", cart);
+        model.addAttribute("total", total);
+        return "cart";
+    }
+
     @GetMapping("/add/{productId}")
-    public String addProduct(@PathVariable Long productId, @RequestParam int quantity, HttpSession session)
+    public RedirectView addProduct(@PathVariable Long productId, @RequestParam int quantity, HttpSession session, RedirectAttributes redirectAttributes)
     {
         Optional<Product> optionalProduct = productService.getProductById(productId);
         if (optionalProduct.isEmpty()) {
-            return "Product not found.";
+            redirectAttributes.addFlashAttribute("successMessage", "Product not found");
+            return new RedirectView("/cart");
         }
-
         Product product = optionalProduct.get();
         Map<Long, CartItem> cart = getCart(session);
         CartItem item = cart.get(productId);
@@ -35,14 +49,8 @@ public class CartController
         } else {
             cart.put(productId, new CartItem(product, quantity));
         }
-
         session.setAttribute(CART_SESSION_KEY, cart);
-        return "Product added to cart.";
-    }
-
-    @GetMapping
-    public Collection<CartItem> viewCart(HttpSession session) {
-        return getCart(session).values();
+        return new RedirectView("/cart");
     }
 
     @GetMapping("/total")

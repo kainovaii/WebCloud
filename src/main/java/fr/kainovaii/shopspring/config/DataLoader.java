@@ -15,8 +15,7 @@ public class DataLoader {
     @Bean
     CommandLineRunner initDatabase(ProductRepository repository) {
         return args -> {
-            repository.save(new Product(null, "std-lxc-1", 4.99, Map.of(
-                    "type", "vps-lxc",
+            repository.save(new Product(null,"vps-lxc", "std-lxc-2", 5.99, Map.of(
                     "vCore", 2,
                     "RAM", 4
             )));
