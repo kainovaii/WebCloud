@@ -22,7 +22,8 @@ public class ClientController
     private final CurrentUserService currentUserService;
     private final OrderService orderService;
 
-    public ClientController(UserService userService, ClientServiceService clientServiceService, CurrentUserService currentUserService, OrderService orderService) {
+    public ClientController(UserService userService, ClientServiceService clientServiceService, CurrentUserService currentUserService, OrderService orderService)
+    {
         this.clientServiceService = clientServiceService;
         this.currentUserService = currentUserService;
         this.orderService = orderService;
