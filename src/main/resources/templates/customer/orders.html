@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/front}">
+<head><title layout:fragment="title">Home</title></head>
+<body>
+<main layout:fragment="content">
+    <section class="mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 mb-3">
+                    <h2>Mes commandes</h2>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-table">
+                            <div id="advanced-table">
+                                <div class="table-responsive">
+                                    <table class="table table-vcenter table-selectable">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <button class="table-sort d-flex justify-content-between" data-sort="sort-name">Name</button>
+                                            </th>
+                                            <th>
+                                                <button class="table-sort d-flex justify-content-between" data-sort="sort-status">Status</button>
+                                            </th>
+                                            <th>
+                                                <button style="float: right;" class="table-sort d-flex justify-content-between" data-sort="sort-category">Action</button>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-tbody">
+                                        <tr th:each="order : ${orders}">
+                                            <td class="sort-name">
+                                                <span th:text="${order.distribution}"></span>
+                                            </td>
+                                            <td class="sort-status">
+                                                <span th:if="${order.status == 'UNPAID'}" class="badge bg-danger-lt">Unpaid</span>
+                                                <span th:if="${order.status == 'PAID'}" class="badge bg-success-lt">Paid</span>
+                                                <span th:if="${order.status == 'PENDING'}" class="badge bg-warning-lt">Pending</span>
+                                            </td>
+                                            <td class="sort-category py-0">
+                                                <a style="float: right;" class="btn btn-sm">Voir</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer d-flex align-items-center">
+                                    <div class="dropdown">
+                                        <a class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                            <span id="page-count" class="me-1">20</span>
+                                            <span>records</span>
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" onclick="setPageListItems(event)" data-value="10">10 records</a>
+                                            <a class="dropdown-item" onclick="setPageListItems(event)" data-value="20">20 records</a>
+                                            <a class="dropdown-item" onclick="setPageListItems(event)" data-value="50">50 records</a>
+                                            <a class="dropdown-item" onclick="setPageListItems(event)" data-value="100">100 records</a>
+                                        </div>
+                                    </div>
+                                    <ul class="pagination m-0 ms-auto">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-left -->
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="icon icon-1"
+                                                >
+                                                    <path d="M15 6l-6 6l6 6" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">1</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">3</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">4</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">5</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">6</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">7</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">8</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">9</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">10</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">
+                                                <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-right -->
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="icon icon-1"
+                                                >
+                                                    <path d="M9 6l6 6l-6 6" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        const advancedTable = {
+                            headers: [
+                                { "data-sort": "sort-name", name: "name" },
+                                { "data-sort": "sort-date", name: "date" },
+                                { "data-sort": "sort-status", name: "status" },
+                            ],
+                        };
+                        const setPageListItems = (e) => {
+                            window.tabler_list["advanced-table"].page = parseInt(e.target.dataset.value);
+                            window.tabler_list["advanced-table"].update();
+                            document.querySelector("#page-count").innerHTML = e.target.dataset.value;
+                        };
+                        window.tabler_list = window.tabler_list || {};
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const list = (window.tabler_list["advanced-table"] = new List("advanced-table", {
+                                sortClass: "table-sort",
+                                listClass: "table-tbody",
+                                page: parseInt("20"),
+                                pagination: {
+                                    item: (value) => {
+                                        return `<li class="page-item"><a class="page-link cursor-pointer">${value.page}</a></li>`;
+                                    },
+                                    innerWindow: 1,
+                                    outerWindow: 1,
+                                    left: 0,
+                                    right: 0,
+                                },
+                                valueNames: advancedTable.headers.map((header) => header["data-sort"]),
+                            }));
+                            const searchInput = document.querySelector("#advanced-table-search");
+                            if (searchInput) {
+                                searchInput.addEventListener("input", () => {
+                                    list.search(searchInput.value);
+                                });
+                            }
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

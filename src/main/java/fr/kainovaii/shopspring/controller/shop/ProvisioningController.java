@@ -5,7 +5,6 @@ import fr.kainovaii.shopspring.model.Order;
 import fr.kainovaii.shopspring.model.Product;
 import fr.kainovaii.shopspring.model.User;
 import fr.kainovaii.shopspring.service.*;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,26 +13,25 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/provision")
-public class ProvisioningController {
-
+public class ProvisioningController
+{
     private final OrderService orderService;
-    private final PaymentService paymentService;
     private final ClientServiceService clientServiceService;
     private final ProductService productService;
     private final CurrentUserService currentUserService;
 
-    public ProvisioningController(OrderService orderService, PaymentService paymentService, ClientServiceService clientServiceService, ProductService productService, ProductService productService1, CurrentUserService currentUserService)
+    public ProvisioningController(OrderService orderService, ClientServiceService clientServiceService, ProductService productService1, CurrentUserService currentUserService)
     {
         this.orderService = orderService;
-        this.paymentService = paymentService;
         this.clientServiceService = clientServiceService;
         this.productService = productService1;
         this.currentUserService = currentUserService;
     }
 
     @GetMapping("/start/{orderId}")
-    public ResponseEntity<?> startProvisioning(@PathVariable Long orderId) {
-        Optional<Order> optionalOrder = orderService.getOrderById(orderId);
+    public ResponseEntity<?> startProvisioning(@PathVariable Long orderId)
+    {
+        Optional<Order> optionalOrder = orderService.findOrderById(orderId);
 
         User user = currentUserService.getCurrentUser();
         user.setId(user.getId());
@@ -44,16 +42,6 @@ public class ProvisioningController {
 
         Order order = optionalOrder.get();
         ClientService clientService = new ClientService();
-
-        /*
-        if (!orderService.isPaid(order)) {
-            boolean paid = paymentService.verify(order);
-            if (!paid) {
-                return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).body();
-            }
-            orderService.markAsPaid(order);
-        }
-        */
 
         try {
             Optional<Product> product = productService.findById(1L);

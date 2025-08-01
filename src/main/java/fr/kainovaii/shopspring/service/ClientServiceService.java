@@ -32,12 +32,12 @@ public class ClientServiceService
 
     public ClientService update(Long id, ClientService updatedService) {
         return serviceInstanceRepository.findById(id)
-                .map(service -> {
-                    service.setServiceName(updatedService.getServiceName());
-                    service.setPrice(updatedService.getPrice());
-                    service.setDuration(updatedService.getDuration());
-                    return serviceInstanceRepository.save(service);
-                }).orElseThrow(() -> new RuntimeException("Service not found with id " + id));
+        .map(service -> {
+            service.setServiceName(updatedService.getServiceName());
+            service.setPrice(updatedService.getPrice());
+            service.setDuration(updatedService.getDuration());
+            return serviceInstanceRepository.save(service);
+        }).orElseThrow(() -> new RuntimeException("Service not found with id " + id));
     }
 
     public void delete(Long id) {
