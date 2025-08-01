@@ -3,6 +3,7 @@ package fr.kainovaii.shopspring.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.kainovaii.shopspring.model.ClientService;
 import fr.kainovaii.shopspring.model.Product;
+import fr.kainovaii.shopspring.model.User;
 import fr.kainovaii.shopspring.repository.ClientServiceRepository;
 import fr.kainovaii.shopspring.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -39,7 +40,8 @@ public class DataLoader {
             )));
              */
 
-            clientServiceRepository.save(new ClientService(3L, 1L, "Premium Support", 15.99, 60, LocalDateTime.now(), 1L, "vps-lxc", 1L));;
-        };
+            User user = new User();
+            user.setId(1L);
+            clientServiceRepository.save(new ClientService(3L, 1L, "Premium Support", 15.99, 60, LocalDateTime.now(), 1L, "vps-lxc", user));};
     }
 }

@@ -45,6 +45,10 @@ public class ClientServiceService
     }
 
     public List<ClientService> getServicesByUser(long userId) {
-        return serviceRepository.findAllByUser(userId);
+        return serviceRepository.findAllByUserId(userId);
+    }
+
+    public long countServicesByUser(Long userId) {
+        return serviceRepository.countByUserId(userId);
     }
 }

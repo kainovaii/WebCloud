@@ -32,14 +32,15 @@ public class ClientService
     @Column(nullable = false, length = 150)
     private String type;
 
-    @Column(nullable = false, length = 150)
-    private long user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
     public ClientService() {
         this.createdAt = LocalDateTime.now();
     }
 
-    public ClientService(Long id, Long productId, String serviceName, double price, Integer duration, LocalDateTime createdAt, Long status, String type, long user) {
+    public ClientService(Long id, Long productId, String serviceName, double price, Integer duration, LocalDateTime createdAt, Long status, String type, User user) {
         this.id = id;
         this.productId = productId;
         this.serviceName = serviceName;
@@ -76,6 +77,6 @@ public class ClientService
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
 
-    public long getUser() { return user; }
-    public void setUser(long user) { this.user = user; }
+    public long getUser() { return user.getId(); }
+    public void setUser(User user) { this.user = user; }
 }
