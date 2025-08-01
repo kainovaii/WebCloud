@@ -4,130 +4,131 @@
 <body>
 <main layout:fragment="content" x-data="{ location: 'Non definie', system: 'Non definie' }">
     <section class="mt-5">
-        <div class="container">
-            <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
-                <span th:text="${successMessage}"></span>
-            </div>
+        <form action="" method="GET">
+            <div class="container">
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span th:text="${successMessage}"></span>
+                </div>
 
-            <div class="row justify-content-center">
-                <div class="col-md-9">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12 mb-2">
-                            <div class="row g-2 align-items-center">
-                                <div class="col">
-                                    <h2 class="page-title">Votre offre</h2>
-                                </div>
-                                <div class="col-auto ms-auto d-print-none">
-                                    <div class="btn-list">
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 mb-2">
+                                <div class="row g-2 align-items-center">
+                                    <div class="col">
+                                        <h2 class="page-title">Votre offre</h2>
+                                    </div>
+                                    <div class="col-auto ms-auto d-print-none">
+                                        <div class="btn-list">
                                         <span class="d-none d-sm-inline">
                                             <a th:href="@{/products/server-vps-lxc}" class="btn btn-sm">Changer d'offre</a>
                                         </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body pb-2">
-                                    <div class="table-responsive">
-                                        <table class="table table-vcenter card-table">
-                                            <tbody>
-                                            <tr th:if="${product.metadata != null}" style="border-color: transparent;">
-                                                <td>
-                                                    <div class="d-flex align-items-center">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body pb-2">
+                                        <div class="table-responsive">
+                                            <table class="table table-vcenter card-table">
+                                                <tbody>
+                                                <tr th:if="${product.metadata != null}" style="border-color: transparent;">
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
                                                 <span class="avatar avatar-2 me-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-server"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z"></path><path d="M3 12m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z"></path><path d="M7 8l0 .01"></path><path d="M7 16l0 .01"></path></svg>
                                                 </span>
-                                                        <div class="flex-fill pt-2">
-                                                            <h2 class="font-weight-medium text-uppercase"><span th:text="${product.name}"></span></h2>
+                                                            <div class="flex-fill pt-2">
+                                                                <h2 class="font-weight-medium text-uppercase"><span th:text="${product.name}"></span></h2>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="mb-2">
-                                                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                            <path d="M22.4 4.5c-.3-.3-.8-.5-1.4-.5H4C2.3 4 1 5.3 1 7v9c0 .6.4 1 1 1s1-.4 1-1V7c0-.6.4-1 1-1h17v10c0 .6.4 1 1 1s1-.4 1-1V6.7c0-.8 0-1.6-.6-2.2z"fill="#066FD1" />
-                                                            <path d="M4 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                            <path d="M8 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                            <path d="M12 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                            <path d="M16 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                            <path d="M20 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                            <path d="M11 10c0-.6-.4-1-1-1H7c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h3c.6 0 1-.4 1-1v-2z" fill="#066FD1" />
-                                                            <path d="M17 9h-3c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h3c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                        </svg>
-                                                        Ram: <strong><span th:text="${product.metadata['ram']}"></span> GB</strong>
-                                                    </div>
-                                                    <div class="mb-2">
-                                                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                            <path d="M19 5H5C2.8 5 1 6.8 1 9v6c0 2.2 1.8 4 4 4h11c.6 0 1-.4 1-1s-.4-1-1-1H5c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v6c0 .6.4 1 1 1s1-.4 1-1V9c0-2.2-1.8-4-4-4z" fill="#066FD1" />
-                                                            <path d="M7 11c-.6 0-1 .4-1 1s.4 1 1 1h4c.6 0 1-.4 1-1s-.4-1-1-1H7z" fill="#066FD1" />
-                                                        </svg>
-                                                        Storage: <strong><span th:text="${product.metadata['storage']}"></span> GB</strong>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="mb-2">
-                                                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                            <path d="M8 7h7.6l-1.3 1.3c-.4.4-.4 1 0 1.4.2.2.4.3.7.3s.5-.1.7-.3l3-3c.1-.1.2-.2.2-.3.1-.2.1-.5 0-.8-.1-.1-.1-.2-.2-.3l-3-3c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L15.6 5H7.9C6.2 5.1 3 6.3 3 10c0 .6.4 1 1 1s1-.4 1-1c0-2.7 2.8-3 3-3z" fill="#066FD1" />
-                                                            <path d="M20 13c-.6 0-1 .4-1 1 0 2.7-2.8 3-3 3H8.4l1.3-1.3c.4-.4.4-1 0-1.4s-1-.4-1.4 0l-3 3c-.1.1-.2.2-.2.3-.1.2-.1.5 0 .8.1.1.1.2.2.3l3 3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4L8.4 19h7.7c1.7-.1 4.9-1.3 4.9-5 0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                        </svg>
-                                                        Connexion: <strong><span th:text="${product.metadata['connection']}"></span> Mbps</strong>
-                                                    </div>
-                                                    <div class="mb-2">
-                                                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                            <path d="M14 9h-4c-.6 0-1 .4-1 1v4c0 .6.4 1 1 1h4c.6 0 1-.4 1-1v-4c0-.6-.4-1-1-1z" fill="#066FD1" />
-                                                            <path d="M22 13c.6 0 1-.4 1-1s-.4-1-1-1h-2V9h2c.6 0 1-.4 1-1s-.4-1-1-1h-2c0-1.7-1.3-3-3-3V2c0-.6-.4-1-1-1s-1 .4-1 1v2h-2V2c0-.6-.4-1-1-1s-1 .4-1 1v2H9V2c0-.6-.4-1-1-1s-1 .4-1 1v2C5.3 4 4 5.3 4 7H2c-.6 0-1 .4-1 1s.4 1 1 1h2v2H2c-.6 0-1 .4-1 1s.4 1 1 1h2v2H2c-.6 0-1 .4-1 1s.4 1 1 1h2c0 1.7 1.3 3 3 3v2c0 .6.4 1 1 1s1-.4 1-1v-2h2v2c0 .6.4 1 1 1s1-.4 1-1v-2h2v2c0 .6.4 1 1 1s1-.4 1-1v-2c1.7 0 3-1.3 3-3h2c.6 0 1-.4 1-1s-.4-1-1-1h-2v-2h2zm-4 4c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v10z" fill="#066FD1" />
-                                                        </svg>
-                                                        CPU: <strong><span th:text="${product.metadata['core']}"></span> vCore</strong>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mb-2">
+                                                            <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                                <path d="M22.4 4.5c-.3-.3-.8-.5-1.4-.5H4C2.3 4 1 5.3 1 7v9c0 .6.4 1 1 1s1-.4 1-1V7c0-.6.4-1 1-1h17v10c0 .6.4 1 1 1s1-.4 1-1V6.7c0-.8 0-1.6-.6-2.2z"fill="#066FD1" />
+                                                                <path d="M4 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                                <path d="M8 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                                <path d="M12 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                                <path d="M16 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                                <path d="M20 16c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1s1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                                <path d="M11 10c0-.6-.4-1-1-1H7c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h3c.6 0 1-.4 1-1v-2z" fill="#066FD1" />
+                                                                <path d="M17 9h-3c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h3c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                            </svg>
+                                                            Ram: <strong><span th:text="${product.metadata['ram']}"></span> GB</strong>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                                <path d="M19 5H5C2.8 5 1 6.8 1 9v6c0 2.2 1.8 4 4 4h11c.6 0 1-.4 1-1s-.4-1-1-1H5c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v6c0 .6.4 1 1 1s1-.4 1-1V9c0-2.2-1.8-4-4-4z" fill="#066FD1" />
+                                                                <path d="M7 11c-.6 0-1 .4-1 1s.4 1 1 1h4c.6 0 1-.4 1-1s-.4-1-1-1H7z" fill="#066FD1" />
+                                                            </svg>
+                                                            Storage: <strong><span th:text="${product.metadata['storage']}"></span> GB</strong>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mb-2">
+                                                            <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                                <path d="M8 7h7.6l-1.3 1.3c-.4.4-.4 1 0 1.4.2.2.4.3.7.3s.5-.1.7-.3l3-3c.1-.1.2-.2.2-.3.1-.2.1-.5 0-.8-.1-.1-.1-.2-.2-.3l-3-3c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4L15.6 5H7.9C6.2 5.1 3 6.3 3 10c0 .6.4 1 1 1s1-.4 1-1c0-2.7 2.8-3 3-3z" fill="#066FD1" />
+                                                                <path d="M20 13c-.6 0-1 .4-1 1 0 2.7-2.8 3-3 3H8.4l1.3-1.3c.4-.4.4-1 0-1.4s-1-.4-1.4 0l-3 3c-.1.1-.2.2-.2.3-.1.2-.1.5 0 .8.1.1.1.2.2.3l3 3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4L8.4 19h7.7c1.7-.1 4.9-1.3 4.9-5 0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                            </svg>
+                                                            Connexion: <strong><span th:text="${product.metadata['connection']}"></span> Mbps</strong>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                                <path d="M14 9h-4c-.6 0-1 .4-1 1v4c0 .6.4 1 1 1h4c.6 0 1-.4 1-1v-4c0-.6-.4-1-1-1z" fill="#066FD1" />
+                                                                <path d="M22 13c.6 0 1-.4 1-1s-.4-1-1-1h-2V9h2c.6 0 1-.4 1-1s-.4-1-1-1h-2c0-1.7-1.3-3-3-3V2c0-.6-.4-1-1-1s-1 .4-1 1v2h-2V2c0-.6-.4-1-1-1s-1 .4-1 1v2H9V2c0-.6-.4-1-1-1s-1 .4-1 1v2C5.3 4 4 5.3 4 7H2c-.6 0-1 .4-1 1s.4 1 1 1h2v2H2c-.6 0-1 .4-1 1s.4 1 1 1h2v2H2c-.6 0-1 .4-1 1s.4 1 1 1h2c0 1.7 1.3 3 3 3v2c0 .6.4 1 1 1s1-.4 1-1v-2h2v2c0 .6.4 1 1 1s1-.4 1-1v-2h2v2c0 .6.4 1 1 1s1-.4 1-1v-2c1.7 0 3-1.3 3-3h2c.6 0 1-.4 1-1s-.4-1-1-1h-2v-2h2zm-4 4c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v10z" fill="#066FD1" />
+                                                            </svg>
+                                                            CPU: <strong><span th:text="${product.metadata['core']}"></span> vCore</strong>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-md-12 mb-1">
-                            <div class="row g-2 align-items-center">
-                                <div class="col">
-                                    <h2 class="page-title">Localisation</h2>
+                        <div class="row mt-4">
+                            <div class="col-md-12 mb-1">
+                                <div class="row g-2 align-items-center">
+                                    <div class="col">
+                                        <h2 class="page-title">Localisation</h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 mt-2">
-                            <label @click="location = 'France'" class="form-selectgroup-item">
-                                <input type="radio" name="datacenter" value="france" class="form-selectgroup-input" required />
-                                <span class="form-selectgroup-label">
+                            <div class="col-md-2 mt-2">
+                                <label @click="location = 'France'" class="form-selectgroup-item">
+                                    <input type="radio" name="datacenter" value="france" class="form-selectgroup-input" required />
+                                    <span class="form-selectgroup-label">
                                     <svg width="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background: new 0 0 512 512;" xml:space="preserve"><path style="fill: #41479b;" d="M170.667,423.721H8.828c-4.875,0-8.828-3.953-8.828-8.828V97.1c0-4.875,3.953-8.828,8.828-8.828  h161.839V423.721z" /><rect x="170.67" y="88.277" style="fill: #f5f5f5;" width="170.67" height="335.45" /><path style="fill: #ff4b55;" d="M503.172,423.721H341.333V88.273h161.839c4.875,0,8.828,3.953,8.828,8.828v317.793  C512,419.77,508.047,423.721,503.172,423.721z" /><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                                     <span class="mt-2 d-block">France</span>
                                 </span>
-                            </label>
-                        </div>
-                        <div class="col-md-2 mt-2">
-                            <label @click="location = 'Switzerland'" class="form-selectgroup-item">
-                                <input type="radio" name="datacenter" value="switzerland" class="form-selectgroup-input" required />
-                                <span class="form-selectgroup-label">
+                                </label>
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <label @click="location = 'Switzerland'" class="form-selectgroup-item">
+                                    <input type="radio" name="datacenter" value="switzerland" class="form-selectgroup-input" required />
+                                    <span class="form-selectgroup-label">
                                     <svg width="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve"><path style="fill:#FF4B55;" d="M503.172,423.725H8.828c-4.875,0-8.828-3.953-8.828-8.828V97.104c0-4.875,3.953-8.828,8.828-8.828  h494.345c4.875,0,8.828,3.953,8.828,8.828v317.793C512,419.773,508.047,423.725,503.172,423.725z"/><path style="fill:#F5F5F5;" d="M353.103,220.691H291.31v-61.793c0-4.875-3.953-8.828-8.828-8.828h-52.966  c-4.875,0-8.828,3.953-8.828,8.828v61.793h-61.793c-4.875,0-8.828,3.953-8.828,8.828v52.966c0,4.875,3.953,8.828,8.828,8.828h61.793  v61.793c0,4.875,3.953,8.828,8.828,8.828h52.966c4.875,0,8.828-3.953,8.828-8.828v-61.795h61.793c4.875,0,8.828-3.953,8.828-8.828  v-52.966C361.931,224.643,357.978,220.691,353.103,220.691z"/><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                                     <span class="mt-2 d-block">Switzerland</span>
                                 </span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-md-12 mb-1">
-                            <div class="row g-2 align-items-center">
-                                <div class="col">
-                                    <h2 class="page-title">Système:</h2>
-                                </div>
+                                </label>
                             </div>
                         </div>
-                        <div class="col-md-2 mt-2">
-                            <label @click="system = 'Debian'" class="form-selectgroup-item">
-                                <input type="radio" name="system" value="debian" class="form-selectgroup-input" required />
-                                <span class="form-selectgroup-label">
+                        <div class="row mt-4">
+                            <div class="col-md-12 mb-1">
+                                <div class="row g-2 align-items-center">
+                                    <div class="col">
+                                        <h2 class="page-title">Système:</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <label @click="system = 'Debian'" class="form-selectgroup-item">
+                                    <input type="radio" name="system" value="debian" class="form-selectgroup-input" required />
+                                    <span class="form-selectgroup-label">
                                     <svg width="50px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
                                         <path fill="#066FD1" d="M40.9,37.8c-1,0,0.2,0.6,1.5,0.8
                                         c0.4-0.3,0.7-0.6,1-0.9C42.6,37.9,41.7,37.9,40.9,37.8 M46.4,36.4c0.6-0.8,1-1.8,1.2-2.8c-0.2,0.7-0.5,1.3-0.9,1.9
@@ -157,12 +158,12 @@
                                     </svg>
                                     <span class="mt-2 d-block">Debian</span>
                                 </span>
-                            </label>
-                        </div>
-                        <div class="col-md-2 mt-2">
-                            <label @click="system = 'Ubuntu'" class="form-selectgroup-item">
-                                <input type="radio" name="system" value="ubuntu" class="form-selectgroup-input" required />
-                                <span class="form-selectgroup-label">
+                                </label>
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <label @click="system = 'Ubuntu'" class="form-selectgroup-item">
+                                    <input type="radio" name="system" value="ubuntu" class="form-selectgroup-input" required />
+                                    <span class="form-selectgroup-label">
                                     <svg width="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
                                     <path fill="#066FD1" d="M10.6,29.9
                                     c3.4,0.3,5.9,3.2,5.6,6.6c-0.3,3.4-3.2,5.9-6.6,5.6C6.4,41.8,4,39.2,4,36C4.1,32.5,7.1,29.8,10.6,29.9z M56.6,55.3
@@ -177,12 +178,12 @@
                                 </svg>
                                     <span class="mt-2 d-block">Ubuntu</span>
                                 </span>
-                            </label>
-                        </div>
-                        <div class="col-md-2 mt-2">
-                            <label @click="system = 'CentOS'" class="form-selectgroup-item">
-                                <input type="radio" name="system" value="centos" class="form-selectgroup-input" required />
-                                <span class="form-selectgroup-label">
+                                </label>
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <label @click="system = 'CentOS'" class="form-selectgroup-item">
+                                    <input type="radio" name="system" value="centos" class="form-selectgroup-input" required />
+                                    <span class="form-selectgroup-label">
                                     <svg width="50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
                                     <path  fill="#066FD1" d="M30.1,32.1h2.3v-1.8l-12.1-12
                                     l5.3-5.3H12.9v12.3l5.1-5L30.1,32.1z M32,36l-2.5-2.4H11.4v-4.8L4,36l7.4,7.2v-5h18.4L32,36z M18,22.4l-5.1,5v4.8H28L18,22.4z
@@ -195,32 +196,33 @@
                                 </svg>
                                     <span class="mt-2 d-block">CentOS</span>
                                 </span>
-                            </label>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Résumé</p>
-                            <dl class="row">
-                                <dt class="col-5">Location:</dt>
-                                <dd class="col-7"><span style="float: right;"><span x-text="location"></span></span></dd>
-                            </dl>
-                            <dl class="row">
-                                <dt class="col-5">Système:</dt>
-                                <dd class="col-7"><span style="float: right;"><span x-text="system"></span></span></dd>
-                            </dl>
-                            <dl class="row">
-                                <dt class="col-5">Total:</dt>
-                                <dd class="col-7"><span style="float: right;"><span th:text="${product.price}"></span><small>€</small></span></dd>
-                            </dl>
-                            <a class="btn w-100" href="">Passer au paiement</a>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Résumé</p>
+                                <dl class="row">
+                                    <dt class="col-5">Location:</dt>
+                                    <dd class="col-7"><span style="float: right;"><span x-text="location"></span></span></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-5">Système:</dt>
+                                    <dd class="col-7"><span style="float: right;"><span x-text="system"></span></span></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-5">Total:</dt>
+                                    <dd class="col-7"><span style="float: right;"><span th:text="${product.price}"></span><small>€</small></span></dd>
+                                </dl>
+                                <button class="btn w-100">Passer au paiement</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 </main>
 </body>

@@ -1,4 +1,4 @@
-package fr.kainovaii.shopspring.controller.front;
+package fr.kainovaii.shopspring.controller.customer;
 
 import fr.kainovaii.shopspring.model.User;
 import fr.kainovaii.shopspring.service.UserService;
