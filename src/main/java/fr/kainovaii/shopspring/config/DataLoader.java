@@ -38,7 +38,7 @@ public class DataLoader {
                     "connection", 300
             )));
              */
-            
+
             clientServiceRepository.save(new ClientService(3L, 1L, "Premium Support", 15.99, 60, LocalDateTime.now(), 1L, "vps-lxc", 1L));;
         };
     }

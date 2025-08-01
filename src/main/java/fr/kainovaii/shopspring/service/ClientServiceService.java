@@ -43,4 +43,8 @@ public class ClientServiceService
     public void delete(Long id) {
         serviceRepository.deleteById(id);
     }
+
+    public List<ClientService> getServicesByUser(long userId) {
+        return serviceRepository.findAllByUser(userId);
+    }
 }

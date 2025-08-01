@@ -114,7 +114,8 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <a sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" th:href="@{/admin}" class="dropdown-item">Administration</a>
+                        <a sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" th:href="@{/admin}" class="dropdown-item text-danger">Administration</a>
+                        <a th:href="@{/client}" class="dropdown-item">Espace client</a>
                         <a th:href="@{/users/logout}" class="dropdown-item">Logout</a>
                     </div>
                 </div>
