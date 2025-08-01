@@ -27,6 +27,11 @@ public class ConfiguratorController
     @GetMapping("")
     public String viewConfigurator(Model model, HttpSession session) {
         Product configurator = getSession(session);
+
+        if (configurator == null || configurator.getMetadata() == null || configurator.getMetadata().isEmpty()) {
+            return "redirect:/nos-offres";
+        }
+
         model.addAttribute("product", configurator);
 
         ObjectMapper objectMapper = new ObjectMapper();
