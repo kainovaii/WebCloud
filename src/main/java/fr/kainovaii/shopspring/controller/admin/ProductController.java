@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
-@Controller
+@Controller("adminProductController")
 @RequestMapping("/admin/products")
 public class ProductController
 {

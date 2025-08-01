@@ -32,3 +32,8 @@ spring:
       hibernate:
         dialect: org.hibernate.community.dialect.SQLiteDialect
   show-sql: true
+paypal:
+  client:
+    id: AWdiwaRVbO3Mj2QgQ2B16u5wPGhDUJ4H4Ipe5gBT479hhj4nyM-sdLvrQcT8HHRCpFPLGney9wQfmJ21
+    secret: EB2IEw7trGpPoB16fDje13tHTVccC6ilOuPhx1PQYSXXsu9UPKXgOj25q0iOfpp64Zd80LbCFn9K-tjQ
+  mode: sandbox

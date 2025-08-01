@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller("productController")
 @RequestMapping("/products")
-public class ShopController
+public class ProductController
 {
     @GetMapping("/server-vps-lxc")
     public String vps_lxc()
