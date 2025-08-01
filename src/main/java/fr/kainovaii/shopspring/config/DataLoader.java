@@ -38,10 +38,11 @@ public class DataLoader {
                     "storage", 1000,
                     "connection", 300
             )));
-             */
 
             User user = new User();
             user.setId(1L);
-            clientServiceRepository.save(new ClientService(3L, 1L, "Premium Support", 15.99, 60, LocalDateTime.now(), 1L, "vps-lxc", user));};
+            clientServiceRepository.save(new ClientService(3L, 1L, "Premium Support", 15.99, 60, LocalDateTime.now(), 1L, "vps-lxc", user));
+             */
+        };
     }
 }

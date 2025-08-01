@@ -1,5 +1,6 @@
 package fr.kainovaii.shopspring.dto;
 
+import fr.kainovaii.shopspring.model.ClientService;
 import fr.kainovaii.shopspring.model.Post;
 
 public class PostWithAuthor

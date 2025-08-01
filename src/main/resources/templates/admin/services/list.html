@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/admin}">
 <body>
-<div layout:fragment="content">
+<main layout:fragment="content">
     <div class="col-12">
         <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
             <span th:text="${successMessage}"></span>
@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <div class="row w-full">
                         <div class="col">
-                            <h3 class="card-title mb-0">Users</h3>
+                            <h3 class="card-title mb-0">Services</h3>
                         </div>
                         <div class="col-md-auto col-sm-12">
                             <div class="ms-auto d-flex flex-wrap btn-list">
@@ -21,7 +21,7 @@
                                     </span>
                                     <input id="advanced-table-search" type="text" class="form-control" autocomplete="off" />
                                 </div>
-                                <a th:href="@{/admin/users/new}" class="btn btn-0">New users</a>
+                                <a th:href="@{/admin/services/new}" class="btn btn-0">New service</a>
                             </div>
                         </div>
                     </div>
@@ -31,18 +31,17 @@
                         <table class="table table-vcenter table-selectable">
                             <thead>
                             <tr>
-                                <th class="w-1"></th>
                                 <th>
-                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-name"><strong>#</strong></button>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-name">Name</button>
                                 </th>
                                 <th>
-                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-city">Username</button>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-type">Type</button>
                                 </th>
                                 <th>
-                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-status">Email</button>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-date">Date</button>
                                 </th>
                                 <th>
-                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-date">Role</button>
+                                    <button class="table-sort d-flex justify-content-between" data-sort="sort-status">Status</button>
                                 </th>
                                 <th>
 
@@ -50,28 +49,27 @@
                             </tr>
                             </thead>
                             <tbody class="table-tbody">
-                            <tr th:each="user : ${users}">
-                                <td>
-                                    <input class="form-check-input m-0 align-middle table-selectable-check" type="checkbox" aria-label="Select invoice" value="true" />
-                                </td>
+                            <tr th:each="service : ${clientServices}">
                                 <td class="sort-name">
-                                    <span th:text="${user.id}"></span>
+                                    <span th:text="${service.serviceName}"></span>
                                 </td>
-                                <td class="sort-city">
-                                    <span th:text="${user.username}"></span>
-                                </td>
-                                <td class="sort-status">
-                                    <span th:text="${user.email}"></span>
+                                <td class="type">
+                                    <span th:text="${service.type}"></span>
                                 </td>
                                 <td class="sort-date">
-                                    <span th:text="${user.role}"></span>
+                                    <span th:text="${service.createdAt}"></span>
+                                </td>
+                                <td class="sort-status">
+                                    <span th:if="${service.status == 0}" class="badge bg-danger-lt">Suspend</span>
+                                    <span th:if="${service.status == 1}" class="badge bg-success-lt">Active</span>
+                                    <span th:if="${service.status == 2}" class="badge bg-warning-lt">Pending</span>
                                 </td>
                                 <td class="text-end">
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" th:href="@{/admin/users/edit/{id}(id=${user.id})}">Edit</a>
-                                            <a class="dropdown-item" th:href="@{/admin/users/delete/{id}(id=${user.id})}">Delete</a>
+                                            <a class="dropdown-item" href="#"> Action </a>
+                                            <a class="dropdown-item" href="#"> Another action </a>
                                         </div>
                                     </div>
                                 </td>
@@ -169,9 +167,9 @@
         <script>
             const advancedTable = {
                 headers: [
-                    { "data-sort": "sort-name", name: "Username" },
-                    { "data-sort": "sort-city", name: "Email" },
-                    { "data-sort": "sort-status", name: "Role" },
+                    { "data-sort": "sort-name", name: "name" },
+                    { "data-sort": "sort-date", name: "date" },
+                    { "data-sort": "sort-status", name: "status" },
                 ],
             };
             const setPageListItems = (e) => {
@@ -205,6 +203,6 @@
             });
         </script>
     </div>
-</div>
+</main>
 </body>
 </html>

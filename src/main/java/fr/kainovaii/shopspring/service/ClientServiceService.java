@@ -18,11 +18,11 @@ public class ClientServiceService
         this.serviceRepository = serviceRepository;
     }
 
-    public List<ClientService> getAll() {
+    public List<ClientService> findAll() {
         return serviceRepository.findAll();
     }
 
-    public Optional<ClientService> getById(Long id) {
+    public Optional<ClientService> findById(Long id) {
         return serviceRepository.findById(id);
     }
 
