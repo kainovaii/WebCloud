@@ -36,7 +36,7 @@ public class CartController
     @GetMapping("/add/{productId}")
     public RedirectView addProduct(@PathVariable Long productId, @RequestParam int quantity, HttpSession session, RedirectAttributes redirectAttributes)
     {
-        Optional<Product> optionalProduct = productService.getById(productId);
+        Optional<Product> optionalProduct = productService.findById(productId);
         if (optionalProduct.isEmpty()) {
             redirectAttributes.addFlashAttribute("successMessage", "Product not found");
             return new RedirectView("/cart");

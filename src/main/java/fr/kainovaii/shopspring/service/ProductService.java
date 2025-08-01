@@ -14,7 +14,7 @@ public class ProductService
     @Autowired
     private ProductRepository productRepository;
 
-    public Optional<Product> getById(Long id) {
+    public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
 
