@@ -40,7 +40,8 @@ public class ClientService
         this.createdAt = LocalDateTime.now();
     }
 
-    public ClientService(Long id, Long productId, String serviceName, double price, Integer duration, LocalDateTime createdAt, Long status, String type, User user) {
+    public ClientService(Long id, Long productId, String serviceName, double price, Integer duration, LocalDateTime createdAt, Long status, String type, User user)
+    {
         this.id = id;
         this.productId = productId;
         this.serviceName = serviceName;

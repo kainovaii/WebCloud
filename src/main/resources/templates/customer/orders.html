@@ -21,6 +21,9 @@
                                                 <button class="table-sort d-flex justify-content-between" data-sort="sort-name">Name</button>
                                             </th>
                                             <th>
+                                                <button class="table-sort d-flex justify-content-between" data-sort="sort-date">Date</button>
+                                            </th>
+                                            <th>
                                                 <button class="table-sort d-flex justify-content-between" data-sort="sort-status">Status</button>
                                             </th>
                                             <th>
@@ -32,6 +35,9 @@
                                         <tr th:each="order : ${orders}">
                                             <td class="sort-name">
                                                 <span th:text="${order.distribution}"></span>
+                                            </td>
+                                            <td class="sort-date">
+                                                <span th:text="${order.createdAt}"></span>
                                             </td>
                                             <td class="sort-status">
                                                 <span th:if="${order.status == 'UNPAID'}" class="badge bg-danger-lt">Unpaid</span>

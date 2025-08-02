@@ -7,11 +7,13 @@ import fr.kainovaii.shopspring.model.Order;
 import fr.kainovaii.shopspring.repository.OrderRepository;
 import fr.kainovaii.shopspring.service.CurrentUserService;
 import fr.kainovaii.shopspring.service.PayPalService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Controller("paypalController")
@@ -57,7 +59,7 @@ public class PayPalController
     }
 
     @GetMapping("/success")
-    public String success(@RequestParam Map<String,String> allParams, Model model) {
+    public String success(@RequestParam Map<String,String> allParams, Model model, HttpSession session) {
         allParams.forEach((key, value) -> System.out.println(key + " : " + value));
 
         String paymentId = allParams.get("paymentId");
@@ -74,10 +76,11 @@ public class PayPalController
 
         try {
             Payment payment = payPalService.executePayment(paymentId, payerId);
-            if ("approved".equals(payment.getState())) {
+            if ("approved".equals(payment.getState()))
+            {
                 model.addAttribute("paymentId", paymentId);
                 long userid = currentUserService.getCurrentUser().getId();
-                Order currentOrder = orderRepository.save(new Order(userid, "Ubuntu 22.04", "PAID"));
+                Order currentOrder = orderRepository.save(new Order(userid, ConfiguratorController.getSession(session).getName(), "PAID"));
 
                 return "redirect:/provision/start/" + currentOrder.getId();
             }

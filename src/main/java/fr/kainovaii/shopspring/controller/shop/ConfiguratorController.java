@@ -25,7 +25,7 @@ public class ConfiguratorController
     public String viewConfigurator(Model model, HttpSession session) {
         Product configurator = getSession(session);
 
-        if (configurator == null || configurator.getMetadata() == null || configurator.getMetadata().isEmpty()) {
+        if (configurator.getMetadata() == null || configurator.getMetadata().isEmpty()) {
             return "redirect:/nos-offres";
         }
 
@@ -54,10 +54,11 @@ public class ConfiguratorController
         return "redirect:/configurator";
     }
 
-    private Product getSession(HttpSession session)
+    public static Product getSession(HttpSession session)
     {
         Product configurator = (Product) session.getAttribute(CONFIGURATOR_SESSION_KEY);
-        if (configurator == null) {
+        if (configurator == null)
+        {
             configurator = new Product();
             session.setAttribute(CONFIGURATOR_SESSION_KEY, configurator);
         }

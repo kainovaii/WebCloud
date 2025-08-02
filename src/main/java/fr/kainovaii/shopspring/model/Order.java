@@ -1,11 +1,12 @@
 package fr.kainovaii.shopspring.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-public class Order
-{
+public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,12 +15,21 @@ public class Order
     private String distribution;
     private String status; // PENDING, PAID, PROVISIONED
 
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
     public Order() {}
 
-    public Order(Long userId, String distribution, String status) {
+    public Order(Long userId, String distribution, String status)
+    {
         this.userId = userId;
         this.distribution = distribution;
         this.status = status;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() { return id; }
@@ -31,17 +41,9 @@ public class Order
     public String getDistribution() { return distribution; }
     public void setDistribution(String distribution) { this.distribution = distribution; }
 
-    public String getStatus() {  return status; }
+    public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    // Temp test
-    @Override
-    public String toString() {
-        return "Order{" +
-            "id=" + id +
-            ", userId=" + userId +
-            ", distribution='" + distribution + '\'' +
-            ", status='" + status + '\'' +
-        '}';
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
