@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{layout/front}">
+<head><title layout:fragment="title">Home</title></head>
+<body>
+<main layout:fragment="content">
+    <div class="page-header d-print-none" aria-label="Page header">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <h2 class="page-title">Invoice</h2>
+                </div>
+                <!-- Page title actions -->
+                <div class="col-auto ms-auto d-print-none">
+                    <button type="button" class="btn btn-primary" onclick="javascript:window.print();">
+                        <!-- Download SVG icon from http://tabler.io/icons/icon/printer -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                            <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"></path>
+                            <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
+                            <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z"></path>
+                        </svg>
+                        Print Invoice
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="card card-lg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="h3">WebCloud</p>
+                            <address>contact@webcloud.com</address>
+                        </div>
+                        <div class="col-6 text-end">
+                            <p class="h3">Client</p>
+                            <address>
+                                <span th:text="${currentUser.username}"></span><br/>
+                                <span th:text="${currentUser.email}"></span><br/>
+                            </address>
+                        </div>
+                        <div class="col-12 my-5">
+                            <h2>Invoice INV/<span th:text="${order.id}"></span></h2>
+                        </div>
+                    </div>
+                    <table class="table table-transparent table-responsive">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="width: 1%"></th>
+                            <th>Product</th>
+                            <th class="text-center" style="width: 1%">Qnt</th>
+                            <th class="text-end" style="width: 1%">Unit</th>
+                            <th class="text-end" style="width: 1%">Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <p class="strong mb-1">Logo Creation</p>
+                                <div class="text-secondary">Logo and business cards design</div>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td class="text-end">$1.800,00</td>
+                            <td class="text-end">$1.800,00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
+                            <td class="font-weight-bold text-end">$30.000,00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-secondary text-center mt-5">Thank you very much for doing business with us. We look forward to working with you again!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

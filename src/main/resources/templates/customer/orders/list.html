@@ -45,7 +45,7 @@
                                                 <span th:if="${order.status == 'PENDING'}" class="badge bg-warning-lt">Pending</span>
                                             </td>
                                             <td class="sort-category py-0">
-                                                <a style="float: right;" class="btn btn-sm">Voir</a>
+                                                <a  th:href="@{/client/orders/{id}(id=${order.id})}" class="btn btn-sm">Voir</a>
                                             </td>
                                         </tr>
                                         </tbody>

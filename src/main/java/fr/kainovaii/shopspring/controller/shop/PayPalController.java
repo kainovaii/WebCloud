@@ -38,20 +38,8 @@ public class PayPalController
     public String payment(@RequestParam double amount)
     {
         try {
-            Payment payment = payPalService.createPayment(
-                    amount,                   // total
-                    "EUR",                   // currency
-                    "paypal",                // method
-                    "sale",                  // intent
-                    "Test paiement PayPal",  // description
-                    CANCEL_URL,
-                    SUCCESS_URL
-            );
-            for (Links link : payment.getLinks()) {
-                if ("approval_url".equals(link.getRel())) {
-                    return "redirect:" + link.getHref();
-                }
-            }
+            Payment payment = payPalService.createPayment(amount, "EUR", "paypal", "sale", "Test paiement PayPal", CANCEL_URL, SUCCESS_URL);
+            for (Links link : payment.getLinks()) { if ("approval_url".equals(link.getRel())) { return "redirect:" + link.getHref(); }}
         } catch (PayPalRESTException e) {
             e.printStackTrace();
         }
@@ -59,21 +47,12 @@ public class PayPalController
     }
 
     @GetMapping("/success")
-    public String success(@RequestParam Map<String,String> allParams, Model model, HttpSession session) {
+    public String success(@RequestParam Map<String,String> allParams, Model model, HttpSession session)
+    {
         allParams.forEach((key, value) -> System.out.println(key + " : " + value));
-
         String paymentId = allParams.get("paymentId");
         String payerId = allParams.get("PayerID");
-        if (payerId == null)
-        {
-            payerId = allParams.get("PayerId");
-        }
-        if (paymentId == null || payerId == null)
-        {
-            System.out.println("Paramètres manquants !");
-            return "redirect:/";
-        }
-
+        if (payerId == null) { payerId = allParams.get("PayerId");}
         try {
             Payment payment = payPalService.executePayment(paymentId, payerId);
             if ("approved".equals(payment.getState()))
